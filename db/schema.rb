@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_27_141317) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_27_144559) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,45 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_141317) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "workout_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "status", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+    t.index ["workout_id"], name: "index_bookings_on_workout_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.boolean "positive", null: false
+    t.text "comment"
+    t.bigint "user_id", null: false
+    t.bigint "workout_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_logs_on_user_id"
+    t.index ["workout_id"], name: "index_logs_on_workout_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,6 +99,35 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_141317) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "workouts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title", null: false
+    t.text "description", null: false
+    t.bigint "level_id", null: false
+    t.datetime "start", null: false
+    t.datetime "end", null: false
+    t.bigint "category_id", null: false
+    t.string "address", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "spots"
+    t.bigint "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_workouts_on_category_id"
+    t.index ["level_id"], name: "index_workouts_on_level_id"
+    t.index ["location_id"], name: "index_workouts_on_location_id"
+    t.index ["user_id"], name: "index_workouts_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "bookings", "workouts"
+  add_foreign_key "logs", "users"
+  add_foreign_key "logs", "workouts"
+  add_foreign_key "workouts", "categories"
+  add_foreign_key "workouts", "levels"
+  add_foreign_key "workouts", "locations"
+  add_foreign_key "workouts", "users"
 end
