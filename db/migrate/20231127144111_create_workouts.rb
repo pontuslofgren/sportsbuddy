@@ -5,8 +5,11 @@ class CreateWorkouts < ActiveRecord::Migration[7.1]
       t.string :title, null: false
       t.text :description, null: false
       t.references :level, null: false, foreign_key: true
-      t.datetime :start, null: false
-      t.datetime :end, null: false
+      t.date :start_date, null: false
+      t.time :start_time, null: false
+      t.time :duration, null: false
+      t.datetime :start_date_time
+      t.datetime :end_date_time
       t.references :category, null: false, foreign_key: true
       t.string :address, null: false
       t.float :latitude

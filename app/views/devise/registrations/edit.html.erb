@@ -19,6 +19,10 @@
                   required: true,
                   input_html: { autocomplete: "text" }%>
 
+    <%= f.input :photo,
+                  label: "Photo", as: :file,
+                  input_html: { multiple: false, class: "form-control" } %>
+
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

@@ -10,11 +10,15 @@
       </div>
 
        <div class="mb-3">
-        <%= f.input_field :start, as: :datetime, html5: true, class:'form-control' %>
+        <%= f.input_field :start_date %>
       </div>
 
-      <div class="mb-3">
-        <%= f.input_field :end, as: :datetime, html5: true, class:'form-control' %>
+       <div class="mb-3">
+        <%= f.input_field :start_time %>
+      </div>
+
+       <div class="mb-3">
+        <%= f.input_field :duration %>
       </div>
 
       <div class="mb-3">
@@ -25,7 +29,9 @@
         <%= f.input :spots, label: "Number of spots" %>
       </div>
 
-
+      <div class="mb-3">
+        <%= f.association :location, label: "Location", as: :radio_buttons, include_hidden: false %>
+      </div>
 
 
       <div class="mb-3">

@@ -104,8 +104,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_144559) do
     t.string "title", null: false
     t.text "description", null: false
     t.bigint "level_id", null: false
-    t.datetime "start", null: false
-    t.datetime "end", null: false
+    t.date "start_date", null: false
+    t.time "start_time", null: false
+    t.time "duration", null: false
+    t.datetime "start_date_time"
+    t.datetime "end_date_time"
     t.bigint "category_id", null: false
     t.string "address", null: false
     t.float "latitude"
