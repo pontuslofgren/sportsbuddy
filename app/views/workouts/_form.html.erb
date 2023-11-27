@@ -1,45 +1,50 @@
 <h2>Add a new workout</h2>
 
     <%= simple_form_for(@workout) do |f| %>
-      <div class="mb-3">
-        <%= f.input :title, label: "Title" %>
+
+      <h4>Describe your workout</h4>
+      <div class="card p-4 mb-3">
+        <div class="mb-3">
+          <%= f.input :title, label: "Title" %>
+        </div>
+        <div class="mb-3">
+          <%= f.input :description, label: "Description" %>
+        </div>
+        <div class="mb-3">
+          <%= f.association :category, label: "Categories", as: :radio_buttons, include_hidden: false %>
+        </div>
+        <div class="mb-3">
+          <%= f.association :level, label: "Levels", as: :radio_buttons, include_hidden: false %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.input :spots, label: "Number of spots" %>
+        </div>
       </div>
 
-      <div class="mb-3">
-        <%= f.input :description, label: "Description" %>
-      </div>
+      <h4>When is your workout</h4>
+       <div class="card p-4 mb-3">
+         <div class="mb-3">
+          <%= f.input :start_date, label: "Date", as: :string, class: 'form-control' %>
+               </div>
+         <div class="mb-3">
+          <%= f.input :start_time, label: "Time", as: :string, class: 'form-control' %>
+               </div>
+         <div class="mb-3">
+          <%= f.input :duration, label: "Duration", as: :string, class: 'form-control' %>
+               </div>
+       </div>
 
-       <div class="mb-3">
-        <%= f.input_field :start_date %>
-      </div>
+      <h4>Where is your workout</h4>
 
-       <div class="mb-3">
-        <%= f.input_field :start_time %>
-      </div>
+      <div class="card p-4 mb-3">
+        <div class="mb-3">
+          <%= f.input :address, label: "Address" %>
+        </div>
+        <div class="mb-3">
+          <%= f.association :location, label: "Location type", as: :radio_buttons, include_hidden: false %>
+        </div>
 
-       <div class="mb-3">
-        <%= f.input_field :duration %>
-      </div>
-
-      <div class="mb-3">
-        <%= f.input :address, label: "Address" %>
-      </div>
-
-      <div class="mb-3">
-        <%= f.input :spots, label: "Number of spots" %>
-      </div>
-
-      <div class="mb-3">
-        <%= f.association :location, label: "Location", as: :radio_buttons, include_hidden: false %>
-      </div>
-
-
-      <div class="mb-3">
-        <%= f.association :category, label: "Categories", as: :radio_buttons, include_hidden: false %>
-      </div>
-
-      <div class="mb-3">
-        <%= f.association :level, label: "Levels", as: :radio_buttons, include_hidden: false %>
       </div>
 
       <%= f.submit "Save", class: "btn btn-primary" %>
