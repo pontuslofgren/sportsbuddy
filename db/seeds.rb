@@ -21,3 +21,10 @@ Level::LEVELS.each do |level|
   Level.create(name: level)
 end
 puts "Finished generating levels"
+
+puts "Generating locations"
+Location.destroy_all
+Location::LOCATIONS.each do |location|
+  Location.create(name: location)
+end
+puts "Finished generating locations"
