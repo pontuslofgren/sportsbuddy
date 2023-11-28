@@ -1,12 +1,11 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar {
+  position: relative; // or any other value than 'static'
+  z-index: 2; // any value higher than the radar's z-index
+  background-color: #1E293B;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.inside-navbar {
+  margin: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
