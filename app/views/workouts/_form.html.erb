@@ -41,18 +41,29 @@
     </div>
     <h4>When is your workout</h4>
       <div class="card p-4 mb-5 shadow">
-        <div class="mb-3">
-          <%= f.input :start_date, label: "Date",
-          as: :string,
-          class: 'form-control',
-          input_html: { data: { controller: "datepicker" } } %>
+        <div class="d-flex gap-5 flex-wrap">
+
+          <div class="mb-3 col-3 flex-grow-1">
+            <%= f.input :start_date, label: "Date",
+            as: :string,
+            class: 'form-control',
+            input_html: { data: { controller: "datepicker" } } %>
+          </div>
+          <div class="mb-3 col-3 flex-grow-1">
+          <%= f.input :start_time,
+            label: "Time",
+            as: :string,
+            class: 'form-control',
+            input_html: { data: { controller: "timepicker" } } %>
+          </div>
+          <div class="mb-3 col-3 flex-grow-1">
+            <%= f.input :duration,
+              label: "Duration",
+              as: :select,
+              class: 'form-control' %>
+          </div>
+
         </div>
-        <div class="mb-3">
-        <%= f.input :start_time, label: "Time", as: :string, class: 'form-control' %>
-              </div>
-        <div class="mb-3">
-        <%= f.input :duration, label: "Duration", as: :string, class: 'form-control' %>
-              </div>
       </div>
     <h4>Where is your workout</h4>
     <div class="card p-4 mb-5 shadow">
