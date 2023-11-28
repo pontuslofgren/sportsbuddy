@@ -17,6 +17,11 @@
     <%= f.input :address,
                   required: true,
                   input_html: { autocomplete: "text" }%>
+
+    <%= f.input :photo,
+                  label: "Photo", as: :file,
+                  input_html: { multiple: false, class: "form-control" } %>
+
     <%= f.input :email,
                 required: true,
                 input_html: { autocomplete: "email" }%>

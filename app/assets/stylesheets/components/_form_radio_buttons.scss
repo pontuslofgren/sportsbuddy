@@ -1,0 +1,50 @@
+.category-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.category-item {
+  flex: 0 1 125px;
+}
+
+.category-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.category-selector + label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 3.5em;
+  transition: 0.5s;
+}
+
+.category-selector:checked + label {
+background: $primary;
+}
+
+.category-selector + label::before {
+  // content: url('assets/images/icons/running.png')
+}
+
+
+// .category-selector:checked + label::before {
+// content: "Selected"
+// }
+
+
+
+// #training_session_type_legs + label {
+//   color: #FD1015;
+// }
+
+// #training_session_type_legs:checked + label {
+//   // background-color: #FD1015;
+//   border-color: #FD1015;
+// }
