@@ -7,3 +7,17 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+puts "Generating categories"
+Category.destroy_all
+Category::CATEGORIES.each do |category|
+  Category.create(name: category)
+end
+puts "Finished generating categories"
+
+puts "Generating levels"
+Level.destroy_all
+Level::LEVELS.each do |level|
+  Level.create(name: level)
+end
+puts "Finished generating levels"
