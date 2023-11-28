@@ -4,7 +4,7 @@ import mapboxgl from "mapbox-gl"
 
 export default class extends Controller {
   static values = { apiKey: String }
-  static targets = ["address", "map", "addressField"]
+  static targets = ["address", "map", "addressField", "longitude", "latitude"]
 
   connect() {
     console.log("Hello from geocoder")
@@ -39,7 +39,9 @@ export default class extends Controller {
     const longitude = event.result["center"][0]
     const latitude = event.result["center"][1]
     this.#addMarkersToMap(longitude, latitude);
-    this.#fitMapToMarkers(longitude, latitude)
+    this.#fitMapToMarkers(longitude, latitude);
+    this.longitudeTarget.value = longitude;
+    this.latitudeTarget.value = latitude;
   }
 
   #addMarkersToMap(long, lat) {

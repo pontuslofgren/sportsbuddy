@@ -1,4 +1,4 @@
-<div id="workoutForm" data-controller="workout-form" class="col-6 ms-auto me-auto my-5">
+<div id="workoutForm" data-controller="workout-form" class="col-md-6 ms-auto me-auto my-5">
 <h2>Add a new workout</h2>
 <p class="text-muted">You're on the brink of finding the perfect workout buddies! In your post, be clear and engaging about your fitness journey. Your enthusiasm will draw others who are eager to share in your active lifestyle. Keep it brief, inspiring, and let's start this fitness adventure together!</p>
   <%= simple_form_for(@workout) do |f| %>
@@ -57,6 +57,7 @@
           <%= f.input :duration,
             label: "Duration",
             as: :select,
+            selected: "01:00",
             collection: Category::TIME_INTERVALS_FORMATTED,
             class: 'form-control' %>
         </div>
@@ -69,6 +70,13 @@
           <%= f.input :address,
             label: "Address",
             input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"} %>
+          <%= f.input :longitude,
+            as: :hidden,
+            input_html: { value: "", data: {address_autocomplete_target: "longitude"} } %>
+
+          <%= f.input :latitude,
+            as: :hidden,
+            input_html: { value: "some value", data: {address_autocomplete_target: "latitude"} } %>
         </div>
       </div>
       <div class="rounded mt-3" style="height: 250px;" data-address-autocomplete-target="map"></div>
