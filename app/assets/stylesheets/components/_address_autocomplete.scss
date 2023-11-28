@@ -1,14 +1,14 @@
-.workout_address .mapboxgl-ctrl-geocoder--input {
+#search-field .mapboxgl-ctrl-geocoder--input {
   background-color: transparent;
   color: white !important;
 }
 
-.workout_address .mapboxgl-ctrl-geocoder--input:focus {
+#search-field .mapboxgl-ctrl-geocoder--input:focus {
   background-color: transparent;
   outline: none;
 }
 
-.workout_address .mapboxgl-ctrl-geocoder {
+#search-field .mapboxgl-ctrl-geocoder {
   background-color: transparent;
   border: 1px solid #383F45;
   font-family: inherit;
@@ -17,34 +17,39 @@
   color: white !important;
 }
 
-.workout_address .mapboxgl-ctrl {
+#search-field .mapboxgl-ctrl {
   color: white;
 }
 
-.workout_address .mapboxgl-ctrl-geocoder--icon {
+#search-field .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+  width: 100%;
+  max-width: 100%;
+}
+
+#search-field .mapboxgl-ctrl-geocoder--icon {
   background-color: transparent !important;
   color: white !important;
 }
 
-.workout_address .mapboxgl-ctrl-geocoder--icon-close {
+#search-field .mapboxgl-ctrl-geocoder--icon-close {
   background-color: transparent !important;
   color: white !important;
 }
 
-.workout_address .mapboxgl-ctrl-geocoder--button {
+#search-field .mapboxgl-ctrl-geocoder--button {
   background-color: transparent;
 }
 
 // Dark background color on suggestions dropdown
-.workout_address .mapboxgl-ctrl-geocoder .suggestions-wrapper {
+#search-field .mapboxgl-ctrl-geocoder .suggestions-wrapper {
   background-color: $components-bg;
 }
-.workout_address .mapboxgl-ctrl-geocoder .suggestions {
+#search-field .mapboxgl-ctrl-geocoder .suggestions {
   background-color: $components-bg;
 }
 
 // Active suggestion item and hover
-.workout_address .mapboxgl-ctrl-geocoder ul.suggestions li.active .mapboxgl-ctrl-geocoder--suggestion {
+#search-field .mapboxgl-ctrl-geocoder ul.suggestions li.active .mapboxgl-ctrl-geocoder--suggestion {
   background-color: rgba(255,255,255,0.5);
   color: black;
 }
@@ -54,6 +59,6 @@
   color: black;
 }
 
-.workout_address .mapboxgl-ctrl-geocoder .suggestions > li > a {
+#search-field .mapboxgl-ctrl-geocoder .suggestions > li > a {
   color: white;
 }

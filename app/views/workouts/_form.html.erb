@@ -1,82 +1,89 @@
+<div id="workoutForm" data-controller="workout-form" class="col-6 ms-auto me-auto my-5">
 <h2>Add a new workout</h2>
-
-<div id="workoutForm" data-controller="workout-form">
+<p class="text-muted">You're on the brink of finding the perfect workout buddies! In your post, be clear and engaging about your fitness journey. Your enthusiasm will draw others who are eager to share in your active lifestyle. Keep it brief, inspiring, and let's start this fitness adventure together!</p>
   <%= simple_form_for(@workout) do |f| %>
-    <h4>Describe your workout</h4>
+    <h5>Describe your workout</h5>
     <div class="card p-4 mb-5 shadow">
       <div class="mb-3">
-        <%= f.input :title, label: "Title" %>
+        <%= f.input :title, label: "Title", hint:"Keep it short" %>
       </div>
       <div class="mb-3">
-        <%= f.input :description, label: "Description" %>
+        <%= f.input :description, label: "Description", hint:"Don't forget to be descriptive" %>
       </div>
       <div class="mb-3">
-      <%= f.association :category,
-        label: "Categories",
-        as: :radio_buttons,
-        collection_wrapper_tag: 'div',
-        collection_wrapper_class: 'category-wrapper',
-        item_wrapper_class: ['category-item', 'border', 'rounded'],
-        input_html: {class: 'category-selector'},
-        include_hidden: false %>
+        <%= f.association :category,
+          label: "Categories",
+          as: :radio_buttons,
+          collection_wrapper_tag: 'div',
+          collection_wrapper_class: 'category-wrapper',
+          item_wrapper_class: ['category-item', 'border', 'rounded'],
+          input_html: {class: 'category-selector'},
+          include_hidden: false %>
       </div>
       <div class="mb-3">
         <%= f.association :level, label: "Levels",
-        as: :radio_buttons,
-        collection_wrapper_tag: 'div',
-        collection_wrapper_class: 'category-wrapper',
-        item_wrapper_class: ['category-item', 'border', 'rounded'],
-        input_html: {class: 'category-selector'},
-        include_hidden: false %>
+          as: :radio_buttons,
+          collection_wrapper_tag: 'div',
+          collection_wrapper_class: 'category-wrapper',
+          item_wrapper_class: ['category-item', 'border', 'rounded'],
+          input_html: {class: 'category-selector'},
+          include_hidden: false %>
       </div>
       <div class="mb-3">
         <%= f.input :spots,
-        label: "Number of spots",
-        as: :range,
-        input_html: { min: 1, max: 15, id:'spotsRange', 'data-workout-form-target':"numberOfSpotsRange", 'data-action':"change->workout-form#value" } %>
+          label: "Number of spots",
+          as: :range,
+          input_html: { min: 1, max: 15, id:'spotsRange', 'data-workout-form-target':"numberOfSpotsRange", 'data-action':"change->workout-form#value" } %>
         <div class="d-flex justify-content-center"><span class="fs-2" data-workout-form-target="rangeValueOutput"></span></div>
-
-
       </div>
     </div>
     <h4>When is your workout</h4>
-      <div class="card p-4 mb-5 shadow">
-        <div class="d-flex gap-5 flex-wrap">
-
-          <div class="mb-3 col-3 flex-grow-1">
-            <%= f.input :start_date, label: "Date",
+    <div class="card p-4 mb-5 shadow">
+      <div class="d-flex gap-5 flex-wrap">
+        <div class="mb-3 col-3 flex-grow-1">
+          <%= f.input :start_date, label: "Date",
             as: :string,
             class: 'form-control',
             input_html: { data: { controller: "datepicker" } } %>
-          </div>
-          <div class="mb-3 col-3 flex-grow-1">
-          <%= f.input :start_time,
-            label: "Time",
-            as: :string,
-            class: 'form-control',
-            input_html: { data: { controller: "timepicker" } } %>
-          </div>
-          <div class="mb-3 col-3 flex-grow-1">
-            <%= f.input :duration,
-              label: "Duration",
-              as: :select,
-              class: 'form-control' %>
-          </div>
-
+        </div>
+        <div class="mb-3 col-3 flex-grow-1">
+        <%= f.input :start_time,
+          label: "Time",
+          as: :string,
+          class: 'form-control',
+          input_html: { data: { controller: "timepicker" } } %>
+        </div>
+        <div class="mb-3 col-3 flex-grow-1">
+          <%= f.input :duration,
+            label: "Duration",
+            as: :select,
+            collection: Category::TIME_INTERVALS_FORMATTED,
+            class: 'form-control' %>
         </div>
       </div>
+    </div>
     <h4>Where is your workout</h4>
-    <div class="card p-4 mb-5 shadow">
+    <div id="search-field" class="card p-4 mb-5 shadow" data-controller="address-autocomplete" data-address-autocomplete-api-key-value="<%=ENV["MAPBOX_API_KEY"]%>">
       <div class="mb-3">
-        <%= f.input :address,
-          label: "Address",
-          input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
-          wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+        <div data-address-autocomplete-target="addressField">
+          <%= f.input :address,
+            label: "Address",
+            input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"} %>
+        </div>
       </div>
-      <div class="mb-3">
-        <%= f.association :location, label: "Location type", as: :radio_buttons, include_hidden: false %>
+      <div class="rounded mt-3" style="height: 250px;" data-address-autocomplete-target="map"></div>
+      <div class="mt-3">
+        <%= f.association :location,
+          label: "Location type",
+          as: :radio_buttons,
+          include_hidden: false,
+          collection_wrapper_tag: 'div',
+          collection_wrapper_class: 'category-wrapper',
+          item_wrapper_class: ['category-item', 'border', 'rounded'],
+          input_html: {class: 'category-selector'}%>
       </div>
     </div>
     <%= f.submit "Save", class: "btn btn-primary" %>
   <% end %>
+  </div>
 </div>
