@@ -1,11 +1,10 @@
 <div class="card p-3" style="max-width: 350px">
-  <div class="row mt-3 align-items-center">
-    <div class="col-2"><%= render "shared/avatar" %></div>
-    <div class="col-8">Ping Pong Master</div> <!-- Placeholder -->
-    <div class="col-2"><%= image_tag("icons/cycling.png", class: "avatar-icon") %></div>
+  <div class="row mt-1 align-items-center">
+    <div class="col-2"><%= image_tag("icons/cycling.png", class: "avatar-icon")%></div>
+    <div class="col-8">Cycling</div> <!-- Placeholder -->
   </div>
 
-  <div class="mt-3 opacity-75">08/12/2023 --- 14:00 - 17:00</div> <!-- Placeholder -->
+  <div class="mt-3 opacity-75">08/12/2023 - 14:00 - 17:00</div> <!-- Placeholder -->
 
   <h4 class="mt-3">Tennis Showdown for Beginners</h4> <!-- Placeholder -->
 
@@ -15,14 +14,15 @@
   skills and improve their game in a fun and supportive environment
   </p> <!-- Placeholder -->
 
-  <div>
-    Spots
-  </div>
-
-  <div class="dflex justify-content-between align-items-end">
-    <div>03/05</div> <!-- Placeholder -->
+  <div class="dflex justify-content-between align-items-end mt-3">
+    <div><u>Spots:</u> 03/05</div> <!-- Placeholder -->
     <div class="mt-3">
       <a href="#" class="btn btn-primary text-white">Join</a>
     </div>
+  </div>
+
+   <div class="row mt-1 align-items-center mt-3">
+    <div class="col-2"><%= render "shared/avatar" %></div>
+    <div class="col-8"><small>James P</small></div> <!-- Placeholder -->
   </div>
 </div>
