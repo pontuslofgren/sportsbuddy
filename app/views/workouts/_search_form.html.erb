@@ -1,0 +1,104 @@
+<div id="search_section">
+
+  <div class="container my-5">
+    <%= form_with url: workouts_path, method: :get, html: {class: "mb-4", data: {search_workouts_target: "form"}} do |f| %>
+
+      <div id="text_search" class="">
+        <%= f.label :text, "Free text search" %>
+        <div class="input-group">
+          <%= f.text_field :text,
+                            class: "form-control",
+                            value: params[:text],
+                            data: {
+                              search_workouts_target: "input",
+                              action: "keyup->search-workouts#update"
+                            } %>
+        </div>
+
+        <div id="datetime_search" class="">
+          <%= f.label :datetime, "Select start date time query" %>
+          <div class="input-group">
+            <%= f.text_field :datetime,
+                              class: "form-control",
+                              value: params[:datetime],
+                              data: {
+                                search_workouts_target: "",
+                                action: ""
+                              } %>
+        </div>
+
+        <div id="location_search" class="">
+          <%= f.label :location, "Enter an address" %>
+          <div class="input-group">
+            <%= f.text_field :location,
+                              class: "form-control",
+                              value: params[:location],
+                              data: {
+                                search_workouts_target: "",
+                                action: ""
+                              } %>
+        </div>
+
+        <%# Consider adding a distance range query %>
+
+        <div id="category_search">
+          <div class="input-group">
+            <%= f.label :category_query, 'Select Categories:' %>
+              <div>
+                <% Category.all.each_with_index do |category, index| %>
+                  <div>
+                    <%# consider changing to id %>
+                    <%= f.check_box :category_query, { multiple: true }, category.name, nil %>
+                    <%= label_tag category.name, category.name%>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+
+        <div id="level_search">
+          <div class="input-group">
+            <%= f.label :level_query, 'Select levels:' %>
+              <div>
+                <% Level.all.each_with_index do |level, index| %>
+                  <div>
+                    <%# consider changing to id %>
+                    <%= f.check_box :level_query, { multiple: true }, level.name, nil %>
+                    <%= label_tag level.name, level.name%>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+
+        <div id="location_search">
+          <div class="input-group">
+            <%= f.label :location_query, 'Select locations:' %>
+              <div>
+                <% Location.all.each_with_index do |location, index| %>
+                  <div>
+                    <%# consider changing to id %>
+                    <%= f.check_box :location_query, { multiple: true }, location.name, nil %>
+                    <%= label_tag location.name, location.name%>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+
+        <%= submit_tag "Search", name: "", class: "btn btn-primary text-white" %>
+      </div>
+      <% end %>
+  </div>
+
+
+</div>
+
+
+<%#
+        <div id="category_search">
+          <div class="input-group">
+          <%= f.label :category_query, "Select categories" %>
+          <%#= select_tag(:city_id, options_for_select(Category::CATEGORIES)) %>
+          <%# </div>
+        </div> %>
