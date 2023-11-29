@@ -25,21 +25,23 @@
                               data: {
                                 controller: "datetimepicker",
                                 search_workouts_target: "dateTimeInput",
-                                action: ""
+                                action: "change->search-workouts#update"
                               } %>
           </div>
         </div>
 
+        <%# NEED HELP TO  %>
+        <%# MAYBE LET THE MAPBOX CONTROLLER DO THE MAGIC HERE? %>
         <div id="location_search" class="" data-controller="map-index" data-map-index-target="addressField" data-map-index-api-key-value="<%=ENV["MAPBOX_API_KEY"]%>" >
           <%= f.label :location, "Search for city and country" %>
           <div class="input-group">
             <%= f.text_field :location,
-                              class: "form-control d-none",
+                              class: "form-control",
                               value: params[:location],
                               data: {
                                 map_index_target: "address",
                                 search_workouts_target: "locationInput",
-                                action: "onchange->search-workouts#update",
+                                # action: "click->search-workouts#update",
                               } %>
           </div>
         </div>
@@ -52,7 +54,7 @@
               <div>
                 <% Category.all.each_with_index do |category, index| %>
                   <div>
-                    <%= f.check_box :category_query, { data: {search_workouts_target: "categoriesInput"},multiple: true }, category.id,nil%>
+                    <%= f.check_box :category_query, { data: {search_workouts_target: "categoriesInput"}, multiple: true }, category.id, nil%>
                     <%= label_tag category.id, category.name%>
                   </div>
                 <% end %>
@@ -66,7 +68,7 @@
               <div>
                 <% Level.all.each_with_index do |level, index| %>
                   <div>
-                    <%= f.check_box :level_query, { multiple: true }, level.id, nil %>
+                    <%= f.check_box :level_query, { data: {search_workouts_target: "levelsInput"}, multiple: true  }, level.id, nil %>
                     <%= label_tag level.id, level.name%>
                   </div>
                 <% end %>
@@ -80,7 +82,7 @@
               <div>
                 <% Location.all.each_with_index do |location, index| %>
                   <div>
-                    <%= f.check_box :location_query, { multiple: true }, location.id, nil %>
+                    <%= f.check_box :location_query, { data: {search_workouts_target: "locationsInput"}, multiple: true  }, location.id, nil %>
                     <%= label_tag location.id, location.name%>
                   </div>
                 <% end %>

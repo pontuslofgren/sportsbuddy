@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="workout-search"
+// Connects to data-controller="search-workouts"
 export default class extends Controller {
   static targets = ["form",
                     "textInput",
@@ -14,10 +14,19 @@ export default class extends Controller {
     console.log("1: formTarget in searchController: ", this.formTarget)
     console.log("2: textInputTarget in searchController: ", this.textInputTarget)
     console.log("3: dateTimeTarget in searchController: ", this.dateTimeTarget)
-    console.log("4: locationInputTarget in searchController: ", this.locationInputTargets)
-    console.log("5: categoriesInputTarget in searchController: ", this.categoriesInputTarget)
-    console.log("6: levelsInputTarget in searchController: ", this.levelsInputTarget)
-    console.log("7: locationsInputTarget in searchController: ", this.locationsInputTarget)
+    console.log("4: locationInputTarget in searchController: ", this.locationInputTarget)
+    console.log("5: categoriesInputTarget in searchController: ", this.categoriesInputTargets)
+    console.log("6: levelsInputTarget in searchController: ", this.levelsInputTargets)
+    console.log("7: locationsInputTarget in searchController: ", this.locationsInputTargets)
+
+    this.observer = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
+          console.log("Change")
+        }
+      });
+    });
+    this.observer.observe(this.locationsInputTarget, { attributes: true });
   }
 
   update() {
