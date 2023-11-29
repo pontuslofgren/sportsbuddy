@@ -3,7 +3,13 @@ class WorkoutsController < ApplicationController
 
   def index
     if params[:category_query].present?
-      raise
+      @workouts = @workouts.where(category_id: params[:category_query])
+    end
+    if params[:level_query].present?
+      @workouts = @workouts.where(level_id: params[:level_query])
+    end
+    if params[:location_query].present?
+      @workouts = @workouts.where(location_id: params[:location_query])
     end
   end
 
