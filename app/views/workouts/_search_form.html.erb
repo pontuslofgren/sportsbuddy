@@ -14,6 +14,7 @@
                               action: "keyup->search-workouts#update"
                             } %>
         </div>
+        </div>
 
         <div id="datetime_search" class="">
           <%= f.label :datetime, "Select start date time query" %>
@@ -26,18 +27,21 @@
                                 search_workouts_target: "",
                                 action: ""
                               } %>
+          </div>
         </div>
 
-        <div id="location_search" class="">
-          <%= f.label :location, "Enter an address" %>
+        <%# Change to a hidden field? %>
+        <div id="location_search" class="" data-controller="map-index" data-map-index-target="addressField" data-map-index-api-key-value="<%=ENV["MAPBOX_API_KEY"]%>" >
+          <%= f.label :location, "Search for city and country" %>
           <div class="input-group">
             <%= f.text_field :location,
-                              class: "form-control",
+                              class: "form-control d-none",
                               value: params[:location],
                               data: {
-                                search_workouts_target: "",
+                                map_index_target: "address",
                                 action: ""
                               } %>
+          </div>
         </div>
 
         <%# Consider adding a distance range query %>
