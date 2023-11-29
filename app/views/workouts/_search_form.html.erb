@@ -22,6 +22,7 @@
                               class: "form-control",
                               value: params[:datetime],
                               data: {
+                                controller: "datetimepicker",
                                 search_workouts_target: "",
                                 action: ""
                               } %>
@@ -47,7 +48,6 @@
               <div>
                 <% Category.all.each_with_index do |category, index| %>
                   <div>
-                    <%# consider changing to id %>
                     <%= f.check_box :category_query, { multiple: true }, category.id, nil %>
                     <%= label_tag category.id, category.name%>
                   </div>
@@ -62,7 +62,6 @@
               <div>
                 <% Level.all.each_with_index do |level, index| %>
                   <div>
-                    <%# consider changing to id %>
                     <%= f.check_box :level_query, { multiple: true }, level.id, nil %>
                     <%= label_tag level.id, level.name%>
                   </div>
@@ -77,7 +76,6 @@
               <div>
                 <% Location.all.each_with_index do |location, index| %>
                   <div>
-                    <%# consider changing to id %>
                     <%= f.check_box :location_query, { multiple: true }, location.id, nil %>
                     <%= label_tag location.id, location.name%>
                   </div>

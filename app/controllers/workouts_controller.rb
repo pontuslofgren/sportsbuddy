@@ -4,8 +4,9 @@ class WorkoutsController < ApplicationController
   def index
     @workouts = @workouts.where(category_id: params[:category_query]) if params[:category_query].present?
     @workouts = @workouts.where(level_id: params[:level_query]) if params[:level_query].present?
-    @workouts = @workouts.where(location_id: params[:location_query]) if params[:location_query].present?
-    @workouts = @workouts.text_search(params[:text])
+    @workouts = @workouts.where(location_id: params[:location_query]) if params[:location_query].present? && !params[:location_query].empty?
+    @workouts = @workouts.where("start_date_time > ?", DateTime.parse(params[:datetime])) if params[:datetime].present?
+    @workouts = @workouts.text_search(params[:text]) if params[:text].present? && !params[:text].empty?
   end
 
   def new
@@ -42,5 +43,13 @@ class WorkoutsController < ApplicationController
       :start_time, :duration, :address, :latitude, :longitude, :spots,
       :category_id, :level_id, :location_id)
   end
+
+  # # Formats "Wed 2023-11-29 at 15:45" to DateTimeObject
+  # def dateformat(date_string)
+  #   # ['Wed', '2023-11-29', 'at', '15:45']
+  #   array = date.split()
+  #   date = array[1]
+  #   time = array[3]
+  # end
 
 end
