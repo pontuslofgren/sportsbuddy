@@ -1,7 +1,7 @@
 <div id="search_section">
 
   <div class="container my-5">
-    <%= form_with url: workouts_path, method: :get, html: {class: "mb-4", data: {search_workouts_target: "form"}} do |f| %>
+    <%= form_with url: workouts_path, method: :get, html: {class: "mb-4", id:"searchform", data: {controller: "search-workouts", search_workouts_target: "form"}} do |f| %>
 
       <div id="text_search" class="">
         <%= f.label :text, "Free text search" %>
@@ -10,7 +10,7 @@
                             class: "form-control",
                             value: params[:text],
                             data: {
-                              search_workouts_target: "input",
+                              search_workouts_target: "textInput",
                               action: "keyup->search-workouts#update"
                             } %>
         </div>
@@ -24,13 +24,12 @@
                               value: params[:datetime],
                               data: {
                                 controller: "datetimepicker",
-                                search_workouts_target: "",
+                                search_workouts_target: "dateTimeInput",
                                 action: ""
                               } %>
           </div>
         </div>
 
-        <%# Change to a hidden field? %>
         <div id="location_search" class="" data-controller="map-index" data-map-index-target="addressField" data-map-index-api-key-value="<%=ENV["MAPBOX_API_KEY"]%>" >
           <%= f.label :location, "Search for city and country" %>
           <div class="input-group">
@@ -39,7 +38,8 @@
                               value: params[:location],
                               data: {
                                 map_index_target: "address",
-                                action: ""
+                                search_workouts_target: "locationInput",
+                                action: "onchange->search-workouts#update",
                               } %>
           </div>
         </div>
@@ -52,7 +52,7 @@
               <div>
                 <% Category.all.each_with_index do |category, index| %>
                   <div>
-                    <%= f.check_box :category_query, { multiple: true }, category.id, nil %>
+                    <%= f.check_box :category_query, { data: {search_workouts_target: "categoriesInput"},multiple: true }, category.id,nil%>
                     <%= label_tag category.id, category.name%>
                   </div>
                 <% end %>
