@@ -1,6 +1,7 @@
 <div id="search_section">
 
   <div class="container my-5">
+    <h2>Find a workout</h2>
     <%= form_with url: workouts_path, method: :get, html: {class: "mb-4", id:"searchform", data: {controller: "search-workouts", search_workouts_target: "form"}} do |f| %>
 
       <div class="row mb-3">
@@ -92,7 +93,11 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4"><%= submit_tag "Search", name: "", class: "btn btn-primary text-white w-100" %></div>
+        <div class="col-md-4">
+          <%= submit_tag "Search", style:"width: 100px", name: "", class: "btn btn-primary text-white" %>
+          <%= link_to "Reset", workouts_path, style:"width: 100px", class:"btn btn-outline-primary" %>
+
+          </div>
 
       </div>
       <% end %>

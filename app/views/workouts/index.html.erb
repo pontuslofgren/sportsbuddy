@@ -1,14 +1,18 @@
 <%= render 'search_form' %>
 
-
 <div class="container">
+  <h3>Results</h3>
   <div class="row">
     <div class="col-md-8">
       <% @workouts.each do |workout| %>
-      <p><%= workout.id %> | <%= workout.title %> | <%= workout.category.name %> | <%= workout.level.name %> | <%= workout.location.name %></p>
+        <%= render partial: "shared/list_card",
+            locals: {workout: workout} %>
       <% end %>
     </div>
-    <div class="col-md-4 border">
+    <div class="col-md-4 border rounded" style="height: 500px;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">>
     map goes here
     </div>
   </div>

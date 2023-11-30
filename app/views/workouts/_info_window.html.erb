@@ -1,0 +1,3 @@
+<p class="text-black my-1"><strong><%= workout.title %></strong></p>
+<p class="text-black my-1"><%= format_date_time(workout.start_date_time) %></p>
+<%= link_to 'See more', workout_path(workout) %>
