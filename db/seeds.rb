@@ -8,6 +8,13 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# puts "Creating a user"
+# User.create(first_name: "Pontus",
+#             last_name: "Lofgren",
+#             )
+
+# puts "Finished creating a user"
+
 puts "Destroying workouts"
 Workout.destroy_all
 
