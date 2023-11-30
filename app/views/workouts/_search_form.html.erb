@@ -53,7 +53,7 @@
                 <% Category.all.each_with_index do |category, index| %>
                   <div>
                     <%= f.check_box :category_query, { data: {search_workouts_target: "categoriesInput"}, multiple: true }, category.id, nil%>
-                    <%= label_tag category.id, category.name%>
+                    <%= label_tag "category_query_#{category.id}", category.name%>
                   </div>
                 <% end %>
               </div>
