@@ -16,9 +16,9 @@
   </div>
 </div>
 <div class="row container ms-auto me-auto d-flex justify-content-center mt-5">
-  <% 3.times do %>
+  <% @workouts.each do |workout| %>
     <div class="col-sm-12 col-md-4">
-      <%= render "shared/card" %>
+      <%= render "shared/card", workout: workout %>
     </div>
   <% end %>
 </div>

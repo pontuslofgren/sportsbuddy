@@ -4,11 +4,8 @@
   <a href="/" class="back-button">
     <i class="fas fa-arrow-left"></i>
   </a>
-  <div class="title">
-    <h1 class="hero-title">Ping Pong Tournament</h1>
-  </div>
-  <div id="countdown">
-    <!-- Countdown timer will be inserted here by JavaScript -->
+  <div class="title"
+    <h1 class="hero-title"><%= @workout.title %></h1>
   </div>
   <div class="buttons">
     <button class="btn btn-primary chat-button">Ask organizer</button>
@@ -25,14 +22,9 @@
           <%= image_tag "icons/heart-regular.svg"%>
         </a>
       </div>
-    <a href="#" class="event-address" style="color: #4287F5"> <%= image_tag 'icons/location-dot-solid.svg', class: 'pin-icon' %>Rua Conde de Redondo, Lisboa</a>
-    <p class="event-date opacity-75 mt-4"> <%= image_tag 'icons/calendar.svg'%> 08/12/2023</p>
-    <p class="event-description opacity-75">It has survived not only five centuries,
-    but also the leap into electronic typesetting, remaining essentially
-    unchanged. It was popularised in the 1960s with the release of Letraset
-    sheets containing Lorem Ipsum passages, and more recently with desktop
-    publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
+      <a href="#" class="event-address" style="color: #4287F5"> <%= image_tag 'icons/location-dot-solid.svg', class: 'pin-icon' %><%= @workout.address %></a>
+      <p class="event-date opacity-75 mt-4"> <%= image_tag 'icons/calendar.svg'%> <%= @workout.start_date %>--<%= @workout.start_time.hour%>:<%= @workout.start_time.min%></p>
+    <p class="event-description opacity-75"><%= @workout.description %></p>
     <div class="cards-container-showpage">
       <div class="card-showpage">
         <p class="card-number">1</p>
