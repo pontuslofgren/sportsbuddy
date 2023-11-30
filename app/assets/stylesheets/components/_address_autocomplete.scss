@@ -1,6 +1,11 @@
 #search-field .mapboxgl-ctrl-geocoder--input {
   background-color: transparent;
-  color: white !important;
+  color: #D6DBE0 !important;
+}
+
+#search-field .mapboxgl-ctrl-geocoder--input::placeholder {
+  color: #D6DBE0;
+  opacity: 1; /* Firefox */
 }
 
 #search-field .mapboxgl-ctrl-geocoder--input:focus {
@@ -14,11 +19,11 @@
   font-family: inherit;
   font-size: inherit;
   box-shadow: none;
-  color: white !important;
+  color: #D6DBE0 !important;
 }
 
 #search-field .mapboxgl-ctrl {
-  color: white;
+  color: #D6DBE0;
 }
 
 #search-field .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
@@ -28,12 +33,12 @@
 
 #search-field .mapboxgl-ctrl-geocoder--icon {
   background-color: transparent !important;
-  color: white !important;
+  color: #D6DBE0 !important;
 }
 
 #search-field .mapboxgl-ctrl-geocoder--icon-close {
   background-color: transparent !important;
-  color: white !important;
+  color: #D6DBE0 !important;
 }
 
 #search-field .mapboxgl-ctrl-geocoder--button {
@@ -54,11 +59,11 @@
   color: black;
 }
 
-.mapboxgl-ctrl-geocoder .suggestions > .active > a, .mapboxgl-ctrl-geocoder .suggestions > li > a:hover {
+#search-field .mapboxgl-ctrl-geocoder ul.suggestions .mapboxgl-ctrl-geocoder--suggestion:hover {
   background-color: rgba(255,255,255,0.5);
   color: black;
 }
 
 #search-field .mapboxgl-ctrl-geocoder .suggestions > li > a {
-  color: white;
+  color: #D6DBE0;
 }

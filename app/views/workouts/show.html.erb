@@ -4,7 +4,7 @@
   <a href="/" class="back-button">
     <i class="fas fa-arrow-left"></i>
   </a>
-  <div class="title">
+  <div class="title"
     <h1 class="hero-title"><%= @workout.title %></h1>
   </div>
   <div class="buttons">
@@ -24,7 +24,7 @@
       </div>
       <a href="#" class="event-address" style="color: #4287F5"> <%= image_tag 'icons/location-dot-solid.svg', class: 'pin-icon' %><%= @workout.address %></a>
       <p class="event-date opacity-75 mt-4"> <%= image_tag 'icons/calendar.svg'%> <%= @workout.start_date %>--<%= @workout.start_time.hour%>:<%= @workout.start_time.min%></p>
-      <p class="event-description opacity-75"><%= @workout.description %></p>
+    <p class="event-description opacity-75"><%= @workout.description %></p>
     <div class="cards-container-showpage">
       <div class="card-showpage">
         <p class="card-number">1</p>

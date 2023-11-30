@@ -8,6 +8,17 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+puts "Creating a user"
+User.create(first_name: "Pontus",
+            last_name: "Lofgren",
+            email: "fake@example.com",
+            password: "123lewagon",
+            biography: "Passionate about pushing the limits, I'm an avid endurance runner devoted to the exhilaration and challenge of long-distance runs. From marathons to ultra-trail races, I thrive on testing my boundaries and embracing the outdoors. Join me in celebrating the journey of stamina, resilience, and the shared love for every mile. 🏃‍♂️🌲🏞️ #EnduranceSpirit #TrailBlazer",
+            address: "Kråkuddsvägen 2, 18357 Täby"
+            )
+
+puts "Finished creating a user"
+
 puts "Destroying workouts"
 Workout.destroy_all
 

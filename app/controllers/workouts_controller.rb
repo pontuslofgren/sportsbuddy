@@ -10,6 +10,15 @@ class WorkoutsController < ApplicationController
     if params[:location].present?
       @workouts = @workouts.near(params[:location].split, 100)
     end
+
+    @markers = @workouts.geocoded.map do |workout|
+      {
+        lat: workout.latitude,
+        lng: workout.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {workout: workout})
+      }
+    end
+
   end
 
   def show
