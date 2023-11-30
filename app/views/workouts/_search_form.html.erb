@@ -3,48 +3,46 @@
   <div class="container my-5">
     <%= form_with url: workouts_path, method: :get, html: {class: "mb-4", id:"searchform", data: {controller: "search-workouts", search_workouts_target: "form"}} do |f| %>
 
-      <div id="text_search" class="">
-        <%= f.label :text, "Free text search" %>
-        <div class="input-group">
-          <%= f.text_field :text,
-                            class: "form-control",
-                            value: params[:text],
-                            data: {
-                              search_workouts_target: "textInput",
-                              action: "keyup->search-workouts#update"
-                            } %>
-        </div>
-        </div>
-
-        <div id="datetime_search" class="">
-          <%= f.label :datetime, "Select start date time query" %>
+      <div class="row">
+        <div id="text_search" class="col-md-4">
+          <%= f.label :text, "Free text search" %>
           <div class="input-group">
-            <%= f.text_field :datetime,
+            <%= f.text_field :text,
                               class: "form-control",
-                              value: params[:datetime],
+                              value: params[:text],
                               data: {
-                                controller: "datetimepicker",
-                                search_workouts_target: "dateTimeInput",
-                                action: "change->search-workouts#update"
+                                search_workouts_target: "textInput",
+                                action: "keyup->search-workouts#update"
                               } %>
           </div>
-        </div>
-
-        <%# NEED HELP TO  %>
-        <%# MAYBE LET THE MAPBOX CONTROLLER DO THE MAGIC HERE? %>
-        <div id="location_search" class="" data-controller="map-index" data-map-index-target="addressField" data-map-index-api-key-value="<%=ENV["MAPBOX_API_KEY"]%>" >
-          <%= f.label :location, "Search for city and country" %>
-          <div class="input-group">
-            <%= f.text_field :location,
-                              class: "form-control",
-                              value: params[:location],
-                              data: {
-                                map_index_target: "address",
-                                search_workouts_target: "locationInput",
-                                # action: "click->search-workouts#update",
-                              } %>
           </div>
-        </div>
+          <div id="datetime_search" class="col-md-4">
+            <%= f.label :datetime, "Select start date time query" %>
+            <div class="input-group">
+              <%= f.text_field :datetime,
+                                class: "form-control",
+                                value: params[:datetime],
+                                data: {
+                                  controller: "datetimepicker",
+                                  search_workouts_target: "dateTimeInput",
+                                  action: "change->search-workouts#update"
+                                } %>
+            </div>
+          </div>
+          <div id="search-field" class="col-md-4" data-controller="map-index" data-map-index-target="addressField" data-map-index-api-key-value="<%=ENV["MAPBOX_API_KEY"]%>" >
+            <%= f.label :location, "Search for city and country" %>
+            <div class="input-group">
+              <%= f.text_field :location,
+                                class: "form-control d-none",
+                                value: params[:location],
+                                data: {
+                                  map_index_target: "address",
+                                  search_workouts_target: "locationInput",
+                                  # action: "click->search-workouts#update",
+                                } %>
+            </div>
+          </div>
+      </div>
 
         <%# Consider adding a distance range query %>
 
