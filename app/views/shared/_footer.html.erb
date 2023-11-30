@@ -29,15 +29,15 @@
   <div class="col mb-3">
     <h5>Sport Buddy</h5>
     <ul class="nav flex-column">
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Phone (+351) 912 345 678</a></li>
-      <li class="nav-item mb-2"><a href="mailto:company@sportbuddy.com" class="d-inline nav-link p-0 text-body-secondary">or send an email to company@sportbuddy.com</a></li>
+      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Phone (+351) 912 345 678 </a></li>
+      <li class="nav-item mb-2">or send an email to <%= mail_to 'company@sportbuddy.com' %></li>
     </ul>
   </div>
 
   <div class="col mb-3">
     <h5>Activity with everybuddy!</h5>
     <ul class="nav flex-column">
-      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Want to be part of the movement? Sign up!</a></li>
+      <li class="nav-item mb-2">Want to be part of the movement? <%= link_to 'Sign up!', new_user_registration_path %></li>
     </ul>
   </div>
 </footer>
