@@ -1,0 +1,108 @@
+<div id="search_section">
+
+  <div class="container my-5">
+    <%= form_with url: workouts_path, method: :get, html: {class: "mb-4", id:"searchform", data: {controller: "search-workouts", search_workouts_target: "form"}} do |f| %>
+
+      <div id="text_search" class="">
+        <%= f.label :text, "Free text search" %>
+        <div class="input-group">
+          <%= f.text_field :text,
+                            class: "form-control",
+                            value: params[:text],
+                            data: {
+                              search_workouts_target: "textInput",
+                              action: "keyup->search-workouts#update"
+                            } %>
+        </div>
+        </div>
+
+        <div id="datetime_search" class="">
+          <%= f.label :datetime, "Select start date time query" %>
+          <div class="input-group">
+            <%= f.text_field :datetime,
+                              class: "form-control",
+                              value: params[:datetime],
+                              data: {
+                                controller: "datetimepicker",
+                                search_workouts_target: "dateTimeInput",
+                                action: "change->search-workouts#update"
+                              } %>
+          </div>
+        </div>
+
+        <%# NEED HELP TO  %>
+        <%# MAYBE LET THE MAPBOX CONTROLLER DO THE MAGIC HERE? %>
+        <div id="location_search" class="" data-controller="map-index" data-map-index-target="addressField" data-map-index-api-key-value="<%=ENV["MAPBOX_API_KEY"]%>" >
+          <%= f.label :location, "Search for city and country" %>
+          <div class="input-group">
+            <%= f.text_field :location,
+                              class: "form-control",
+                              value: params[:location],
+                              data: {
+                                map_index_target: "address",
+                                search_workouts_target: "locationInput",
+                                # action: "click->search-workouts#update",
+                              } %>
+          </div>
+        </div>
+
+        <%# Consider adding a distance range query %>
+
+        <div id="category_search">
+          <div class="input-group">
+            <%= f.label :category_query, 'Select Categories:' %>
+              <div>
+                <% Category.all.each_with_index do |category, index| %>
+                  <div>
+                    <%= f.check_box :category_query, { data: {search_workouts_target: "categoriesInput"}, multiple: true }, category.id, nil%>
+                    <%= label_tag category.id, category.name%>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+
+        <div id="level_search">
+          <div class="input-group">
+            <%= f.label :level_query, 'Select levels:' %>
+              <div>
+                <% Level.all.each_with_index do |level, index| %>
+                  <div>
+                    <%= f.check_box :level_query, { data: {search_workouts_target: "levelsInput"}, multiple: true  }, level.id, nil %>
+                    <%= label_tag level.id, level.name%>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+
+        <div id="location_search">
+          <div class="input-group">
+            <%= f.label :location_query, 'Select locations:' %>
+              <div>
+                <% Location.all.each_with_index do |location, index| %>
+                  <div>
+                    <%= f.check_box :location_query, { data: {search_workouts_target: "locationsInput"}, multiple: true  }, location.id, nil %>
+                    <%= label_tag location.id, location.name%>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+
+        <%= submit_tag "Search", name: "", class: "btn btn-primary text-white" %>
+      </div>
+      <% end %>
+  </div>
+
+
+</div>
+
+
+<%#
+        <div id="category_search">
+          <div class="input-group">
+          <%= f.label :category_query, "Select categories" %>
+          <%#= select_tag(:city_id, options_for_select(Category::CATEGORIES)) %>
+          <%# </div>
+        </div> %>

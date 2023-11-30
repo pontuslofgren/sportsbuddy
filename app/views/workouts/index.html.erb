@@ -1,1 +1,8 @@
-<%= render partial: 'shared/card', locals: {title: "Wilmar's Page"} %>
+<%= render 'search_form' %>
+
+
+<% @workouts.each do |workout| %>
+
+<p><%= workout.id %> | <%= workout.title %> | <%= workout.category.name %> | <%= workout.level.name %> | <%= workout.location.name %></p>
+
+<% end %>
