@@ -3,13 +3,14 @@
   <div class="container my-5">
     <%= form_with url: workouts_path, method: :get, html: {class: "mb-4", id:"searchform", data: {controller: "search-workouts", search_workouts_target: "form"}} do |f| %>
 
-      <div class="row">
+      <div class="row mb-3">
         <div id="text_search" class="col-md-4">
           <%= f.label :text, "Free text search" %>
           <div class="input-group">
             <%= f.text_field :text,
                               class: "form-control",
                               value: params[:text],
+                              placeholder: "Search for title, descriptiona and organiser",
                               data: {
                                 search_workouts_target: "textInput",
                                 action: "keyup->search-workouts#update"
@@ -33,7 +34,7 @@
             <%= f.label :location, "Search for city and country" %>
             <div class="input-group">
               <%= f.text_field :location,
-                                class: "form-control",
+                                class: "form-control d-none",
                                 value: params[:location],
                                 data: {
                                   map_index_target: "address",
@@ -46,49 +47,53 @@
 
         <%# Consider adding a distance range query %>
 
-        <div id="category_search">
+        <div id="category_search" class="mb-3">
+        <p class="m-0">Select categories</p>
           <div class="input-group">
-            <%= f.label :category_query, 'Select Categories:' %>
-              <div>
+            <%# <%= f.label :category_query, 'Select Categories:' %>
+              <div class="pills-wrapper">
                 <% Category.all.each_with_index do |category, index| %>
-                  <div>
-                    <%= f.check_box :category_query, { data: {search_workouts_target: "categoriesInput"}, multiple: true }, category.id, nil%>
-                    <%= label_tag "category_query_#{category.id}", category.name%>
+                  <div class="checkbox-pill">
+                    <%= f.check_box :category_query, { data: {search_workouts_target: "categoriesInput"}, multiple: true, class:"checkbox-selector-hide" }, category.id, nil%>
+                    <%= label_tag "category_query_#{category.id}", category.name, class:"checkbox-label-pill border shadow-sm" %>
                   </div>
                 <% end %>
               </div>
           </div>
         </div>
 
-        <div id="level_search">
-          <div class="input-group">
-            <%= f.label :level_query, 'Select levels:' %>
-              <div>
-                <% Level.all.each_with_index do |level, index| %>
-                  <div>
-                    <%= f.check_box :level_query, { data: {search_workouts_target: "levelsInput"}, multiple: true  }, level.id, nil %>
-                    <%= label_tag level.id, level.name%>
-                  </div>
-                <% end %>
-              </div>
+        <div class="row mb-3">
+          <div id="level_search" class="col-md-4">
+            <p class="m-0">Select level types</p>
+            <div class="input-group">
+              <%# <%= f.label :level_query, 'Select levels:' %>
+                <div class="pills-wrapper">
+                  <% Level.all.each_with_index do |level, index| %>
+                    <div class="checkbox-pill">
+                      <%= f.check_box :level_query, { data: {search_workouts_target: "levelsInput"}, multiple: true, class:"checkbox-selector-hide"  }, level.id, nil %>
+                      <%= label_tag "level_query_#{level.id}", level.name, class:"checkbox-label-pill border shadow-sm" %>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+          </div>
+          <div id="location_search" class="col-md-4">
+          <p class="m-0">Select location types</p>
+            <div class="input-group">
+              <%# <%= f.label :location_query, 'Select locations:' %>
+                <div class="pills-wrapper">
+                  <% Location.all.each_with_index do |location, index| %>
+                    <div class="checkbox-pill">
+                      <%= f.check_box :location_query, { data: {search_workouts_target: "locationsInput"}, multiple: true, class:"checkbox-selector-hide"  }, location.id, nil %>
+                      <%= label_tag "location_query_#{location.id}", location.name, class:"checkbox-label-pill border shadow-sm" %>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
           </div>
         </div>
+        <div class="col-md-4"><%= submit_tag "Search", name: "", class: "btn btn-primary text-white w-100" %></div>
 
-        <div id="location_search">
-          <div class="input-group">
-            <%= f.label :location_query, 'Select locations:' %>
-              <div>
-                <% Location.all.each_with_index do |location, index| %>
-                  <div>
-                    <%= f.check_box :location_query, { data: {search_workouts_target: "locationsInput"}, multiple: true  }, location.id, nil %>
-                    <%= label_tag location.id, location.name%>
-                  </div>
-                <% end %>
-              </div>
-          </div>
-        </div>
-
-        <%= submit_tag "Search", name: "", class: "btn btn-primary text-white" %>
       </div>
       <% end %>
   </div>
