@@ -1,0 +1,64 @@
+#search-field .mapboxgl-ctrl-geocoder--input {
+  background-color: transparent;
+  color: white !important;
+}
+
+#search-field .mapboxgl-ctrl-geocoder--input:focus {
+  background-color: transparent;
+  outline: none;
+}
+
+#search-field .mapboxgl-ctrl-geocoder {
+  background-color: transparent;
+  border: 1px solid #383F45;
+  font-family: inherit;
+  font-size: inherit;
+  box-shadow: none;
+  color: white !important;
+}
+
+#search-field .mapboxgl-ctrl {
+  color: white;
+}
+
+#search-field .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+  width: 100%;
+  max-width: 100%;
+}
+
+#search-field .mapboxgl-ctrl-geocoder--icon {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+#search-field .mapboxgl-ctrl-geocoder--icon-close {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+#search-field .mapboxgl-ctrl-geocoder--button {
+  background-color: transparent;
+}
+
+// Dark background color on suggestions dropdown
+#search-field .mapboxgl-ctrl-geocoder .suggestions-wrapper {
+  background-color: $components-bg;
+}
+#search-field .mapboxgl-ctrl-geocoder .suggestions {
+  background-color: $components-bg;
+}
+
+// Active suggestion item and hover
+#search-field .mapboxgl-ctrl-geocoder ul.suggestions li.active .mapboxgl-ctrl-geocoder--suggestion {
+  background-color: rgba(255,255,255,0.5);
+  color: black;
+}
+
+.mapboxgl-ctrl-geocoder .suggestions > .active > a, .mapboxgl-ctrl-geocoder .suggestions > li > a:hover {
+  background-color: rgba(255,255,255,0.5);
+  color: black;
+}
+
+#search-field .mapboxgl-ctrl-geocoder .suggestions > li > a {
+  color: white;
+}
