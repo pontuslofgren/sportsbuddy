@@ -1,13 +1,13 @@
 .navbar {
-  position: relative; // or any other value than 'static'
+  // position: relative; // or any other value than 'static'
   z-index: 2; // any value higher than the radar's z-index
   background-color: #1E293B;
 }
 
 .inside-navbar {
   margin: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
+  // padding-left: 50px;
+  // padding-right: 50px;
 }
 
 .nav-link:hover {
