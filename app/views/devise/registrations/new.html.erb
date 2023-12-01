@@ -1,19 +1,26 @@
+<div class="container mt-5">
 <h2>Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-inputs row g-3">
+  <div class="col-md-6">
     <%= f.input :first_name,
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "text" }%>
+                  </div>
+  <div class="col-md-6">
     <%= f.input :last_name,
                   required: true,
                   input_html: { autocomplete: "text" }%>
+                  </div>
+  <div>
     <%= f.input :biography,
                   required: true,
                   input_html: { autocomplete: "text" }%>
+                  </div>
     <%= f.input :address,
                   required: true,
                   input_html: { autocomplete: "text" }%>
@@ -40,3 +47,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

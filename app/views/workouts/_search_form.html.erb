@@ -1,7 +1,6 @@
 <div id="search_section">
 
   <div class="container my-5">
-    <h2>Find a workout</h2>
     <%= form_with url: workouts_path, method: :get, html: {class: "mb-4", id:"searchform", data: {controller: "search-workouts", search_workouts_target: "form"}} do |f| %>
 
       <div class="row mb-3">

@@ -1,10 +1,16 @@
-<div class="border rounded mb-3 p-3 shadow">
+<div class="border rounded mb-3 p-3 shadow custom-list-card" data-controller="show-info" data-action="click->show-info#addShow">
   <div class="mb-1">
     <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-clock me-2"></i><%= format_date_time(workout.start_date_time) %></span>
     <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-map-pin me-2"></i><%= workout.address %> (<%= workout.location.name.downcase %>)</span>
     <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-person-running me-2"></i><%= workout.category.name %> (<%= workout.level.name.downcase %>)</span>
   </div>
-  <h3 class="fs-5"><%= workout.title %></h3>
+  <div>
+    <h3 class="fs-5 text-white"><%= workout.title %></h3>
+  </div>
+  <div class="d-none" data-show-info-target="toggleElement">
+    <div class="mb-3"><%= workout.description %></div>
+    <%= link_to 'See workout', workout_path(workout), class:"btn btn-primary" %>
+  </div>
 </div>
 
 
