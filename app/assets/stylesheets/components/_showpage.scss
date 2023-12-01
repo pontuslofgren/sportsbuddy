@@ -3,29 +3,31 @@
 }
 
 .hero {
-  position: relative;
-  height: 50vh;
+  // position: relative;
+  // height: 50vh;
+  // position: relative;
+  //height: 50vh;
   // background: linear-gradient(180deg, rgba(30, 41, 59, 0.00) 0%, #1E293B 100%);
   background-size: cover;
   background-position: center;
 }
 
 .title {
-  position: absolute;
-  bottom: 200px;
-  left: 150px;
+  // position: absolute;
+  // bottom: 200px;
+  // left: 150px;
 }
 
 .hero-title {
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 700;
+  // font-size: 64px;
+  // font-style: normal;
+  // font-weight: 700;
 }
 
 .buttons {
-  position: absolute;
-  right: 100px;
-  top: calc(65% + 60px); /* Adjust as needed */
+  // position: absolute;
+  // right: 100px;
+  // top: calc(65% + 60px); /* Adjust as needed */
 }
 
 .chat-button {
@@ -34,24 +36,24 @@
 }
 
 .join-button {
-  background: var(--Blue, #4287F5);
-  color: var(--White, #FFF);
+  // background: var(--Blue, #4287F5);
+  // color: var(--White, #FFF);
 }
 
 .btn-primary.chat-button:hover {
-  background-color: #4287F5; /* blue background */
-  color: #fff; /* white text */
+  // background-color: #4287F5; /* blue background */
+  // color: #fff; /* white text */
 }
 
 .btn-primary.join-button:hover {
-  background-color: #fff; /* white background */
-  color: #4287F5; /* blue text */
+  // background-color: #fff; /* white background */
+  // color: #4287F5; /* blue text */
 }
 
 .back-button {
-  position: absolute;
-  top: 20px;
-  left: 60px;
+  // position: absolute;
+  // top: 20px;
+  // left: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,32 +65,37 @@
   text-decoration: none;
 }
 
-.title-like-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.event-details-container {
-  display: flex;
-  justify-content: space-between;
-}
 
-.event-title{
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
+// Replaced with boostrap
+// .title-like-container {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+
+// Replaced with bootstrap
+// .event-details-container {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+// .event-title{
+//   font-size: 48px;
+//   font-style: normal;
+//   font-weight: 700;
+//   line-height: normal;
+// }
 
 .event-details {
-  width: 65%;
+  // width: 65%;
   /* Add more styles as needed */
 }
 
-.event-map img {
-  border-radius: 5px;
-  width: 360px;
-}
+// Not needed anymore since we have a map canvas
+// .event-map img {
+//   border-radius: 5px;
+//   width: 360px;
+// }
 
 
 .pin-icon {
@@ -111,65 +118,65 @@
   text-decoration: none;
 }
 
-
-.cards-container-showpage {
-  display: flex;
-  justify-content: space-between;
-}
+// Replaced with bootstrap
+// .cards-container-showpage {
+//   display: flex;
+//   justify-content: space-between;
+// }
 
 .card-showpage {
-  width: 45%; /* Adjust as needed */
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.08);
+  // width: 45%; /* Adjust as needed */
+  // text-align: center;
+  // border-radius: 5px;
+  // box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.08);
   background-color:#1E293B;
   /* Add more styles as needed */
 }
 
-.card-number {
-  font-size: 2em; /* Adjust as needed */
-  /* Add more styles as needed */
-}
+// .card-number {
+//   font-size: 2em; /* Adjust as needed */
+//   /* Add more styles as needed */
+// }
 
 
-.cards-container-buddies {
-  display: flex;
-  gap: 20px; /* Adjust as needed */
-}
+// .cards-container-buddies {
+//   display: flex;
+//   gap: 20px; /* Adjust as needed */
+// }
 
 .card-buddies {
-  margin-top: 10px;
-  display: flex;
-  text-align: center;
-  align-items: center;
+  // margin-top: 10px;
+  // display: flex;
+  // text-align: center;
+  // align-items: center;
   background-color:#1E293B;
-  box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.08);
-  border-radius: 5px;
-  width: 300px;
-  max-width: 300px;
+  // box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.08);
+  // border-radius: 5px;
+  // width: 300px;
+  // max-width: 300px;
 }
 
 .card-avatar {
   width: 50px; /* Adjust as needed */
   height: 50px; /* Adjust as needed */
-  border-radius: 50%; /* Makes the avatar circular */
-  margin: 10px;
+  // border-radius: 50%; /* Makes the avatar circular */
+  // margin: 10px;
 }
 
-.card-info {
-  margin: 10px;
-  margin-right: 20px; /* Adjust as needed */
-}
+// .card-info {
+//   margin: 10px;
+//   margin-right: 20px; /* Adjust as needed */
+// }
 
-.buddies-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Adjust as needed */
-}
+// .buddies-section {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 20px; /* Adjust as needed */
+// }
 
-.section-title{
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
+// .section-title{
+//   font-size: 48px;
+//   font-style: normal;
+//   font-weight: 700;
+//   line-height: normal;
+// }
