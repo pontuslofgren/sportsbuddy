@@ -38,6 +38,7 @@
     <h5>Activity with everybuddy!</h5>
     <ul class="nav flex-column">
       <li class="nav-item mb-2">Want to be part of the movement? <%= link_to 'Sign up!', new_user_registration_path %></li>
+      <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
     </ul>
   </div>
 </footer>
