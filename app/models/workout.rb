@@ -6,7 +6,7 @@ class Workout < ApplicationRecord
   belongs_to :level
   belongs_to :category
   belongs_to :location
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 
   # Geocoding
   geocoded_by :address
