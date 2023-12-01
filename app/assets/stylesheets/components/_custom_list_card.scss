@@ -1,0 +1,13 @@
+.custom-list-card {
+  transition: scale 0.2s;
+}
+
+.hidden-card-content {
+  opacity: 0;
+  transform: scale(0);
+  transition: .6s ease opacity,.6s ease transform;
+}
+
+.custom-list-card:hover {
+  scale: 1.01;
+}
