@@ -22,7 +22,7 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <% if user_signed_in? %>
-              <%= link_to 'Profile', new_user_session_path, class:"text-white btn btn-primary sb-full-width" %>
+              <%= link_to 'Profile', profile_path, class:"text-white btn btn-primary sb-full-width" %>
             <% else %>
               <%= link_to 'Log in', new_user_session_path, class:"text-white btn btn-primary sb-full-width" %>
               <%= link_to 'Sign up', new_user_registration_path, class:"text-white btn btn-outline-primary sb-full-width" %>
