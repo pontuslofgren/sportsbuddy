@@ -1,31 +1,28 @@
 <nav class="navbar navbar-expand-lg">
-  <div class="container inside-navbar">
-      <a class="navbar-brand text-white" href="/"><%= image_tag "sportsbuddy_logo.png", width: 150 %></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <div class="container">
+        <a class="navbar-brand text-white" href="/"><%= image_tag "sportsbuddy_logo.png", width: 150 %></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to 'Home', root_path, class:"nav-link #{"active" if current_page?(root_path)}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Workouts', workouts_path, class:"nav-link #{"active" if current_page?(workouts_path)}" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'About us', about_path, class:"nav-link #{"active" if current_page?(about_path)}" %>
+          </li>
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">Your Events</a>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Event', workouts_path, class: 'nav-link text-white' %>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link text-white" href="#" role="button" aria-expanded="false">Buddies</a>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'About Us', about_path, class: 'nav-link text-white' %>
-        </li>
-      </ul>
+
+        </ul>
+
+      </div>
+
+
 
     </div>
-
-  </div>
 </nav>
