@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :profile
+  resources :profiles
+
+
 
   get '/about', to: 'pages#about', as: 'about'
 end

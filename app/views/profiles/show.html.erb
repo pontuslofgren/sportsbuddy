@@ -1,1 +1,65 @@
-hello
+<div class="extended-navbar">
+  <div class="container extended-navbar">
+    <div id="profile-photo" class="bg-primary rounded-circle">
+    <% if @profile.photo.attached? %>
+      <%= cl_image_tag @profile.photo.key, class:"profile-avatar-photo rounded-circle", width: 100 %>
+    <% else %>
+      <i class="fa-solid fa-user fs-1"></i>
+    <% end %>
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="container mb-3 mt-5 py-3 border-bottom">
+
+  <div class="row">
+    <div class="col-md-8">
+      <h2><%= @profile.full_name %></h2>
+      <p><%= @profile.biography %></p>
+    </div>
+  </div>
+</div>
+
+<div class="container mb-3">
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <div class="mb-3">
+        <h3>Workouts</h3>
+        <% if @workouts.any? %>
+          <% @workouts.each do |workout| %>
+            <%= workout.title %>
+          <% end %>
+        <% else %>
+          No workouts, yet...
+        <% end %>
+      </div>
+
+      <div class="mb-3">
+        <h3>Bookings</h3>
+        <% if @bookings.any? %>
+          <% @bookings.each do |booking| %>
+            <p><%= booking.workout.title %></p>
+          <% end %>
+        <% else %>
+          No bookings, yet...
+        <% end %>
+      </div>
+    </div>
+
+    <!--  Profile action  -->
+    <div class="col-md-4 border-start">
+
+      <% if @profile == current_user %>
+        This is my profile! Actions for my own profile will go here.
+      <% else %>
+        This is not my profile! Actions for another profile.
+      <% end %>
+
+    </div>
+  </div>
+</div>
