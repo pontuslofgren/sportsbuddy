@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :workouts do
     member do
-      resources :bookings, only: %i[new create]
+      resources :bookings, only: %i[new create destroy]
     end
   end
 

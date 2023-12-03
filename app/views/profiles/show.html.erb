@@ -1,5 +1,5 @@
-<div class="extended-navbar">
-  <div class="container extended-navbar">
+<div class="extended-navbar border-bottom">
+  <div class="container extended-navbar border-bottom">
     <div id="profile-photo" class="bg-primary rounded-circle">
     <% if @profile.photo.attached? %>
       <%= cl_image_tag @profile.photo.key, class:"profile-avatar-photo rounded-circle", width: 100 %>
@@ -32,7 +32,8 @@
         <h3>Workouts</h3>
         <% if @workouts.any? %>
           <% @workouts.each do |workout| %>
-            <%= workout.title %>
+            <%= render partial: "shared/list_card",
+            locals: {workout: workout} %>
           <% end %>
         <% else %>
           No workouts, yet...
@@ -43,7 +44,8 @@
         <h3>Bookings</h3>
         <% if @bookings.any? %>
           <% @bookings.each do |booking| %>
-            <p><%= booking.workout.title %></p>
+            <%= render partial: "shared/list_card",
+            locals: {workout: booking.workout} %>
           <% end %>
         <% else %>
           No bookings, yet...
