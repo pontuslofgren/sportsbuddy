@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   has_many :bookings
+  has_many :workouts
 
   # Geocoding
   geocoded_by :address
