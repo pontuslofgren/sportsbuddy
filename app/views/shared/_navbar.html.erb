@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg sb-navbar">
   <div class="container">
         <a class="navbar-brand text-white" href="/"><%= image_tag "sportsbuddy_logo.png", width: 150 %></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,7 +6,8 @@
         </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <ul class="navbar-nav me-auto mb-2">
           <li class="nav-item">
             <%= link_to 'Home', root_path, class:"nav-link #{"active" if current_page?(root_path)}" %>
           </li>
@@ -16,8 +17,17 @@
           <li class="nav-item">
             <%= link_to 'About us', about_path, class:"nav-link #{"active" if current_page?(about_path)}" %>
           </li>
+        </ul>
 
-
+        <ul class="navbar-nav mb-2">
+          <li class="nav-item">
+            <% if user_signed_in? %>
+              <%= link_to 'Profile', new_user_session_path, class:"text-white btn btn-primary sb-full-width" %>
+            <% else %>
+              <%= link_to 'Log in', new_user_session_path, class:"text-white btn btn-primary sb-full-width" %>
+              <%= link_to 'Sign up', new_user_registration_path, class:"text-white btn btn-outline-primary sb-full-width" %>
+            <% end %>
+          </li>
         </ul>
 
       </div>
