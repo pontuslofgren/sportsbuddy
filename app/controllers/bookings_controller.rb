@@ -6,13 +6,16 @@ class BookingsController < ApplicationController
     @booking.workout_id = @workout.id
     @booking.user_id = current_user.id
     if @booking.save
-      # redirect_to profile_path(current_user)
-      raise
+      redirect_to profile_path(current_user)
     else
+      raise
       render 'workouts/show', status: :unprocessable_entity
-
-
     end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
   end
 
   private

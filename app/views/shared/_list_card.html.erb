@@ -10,12 +10,15 @@
   <div class="d-none" data-show-info-target="toggleElement">
     <div class="mb-3"><%= workout.description %></div>
     <%= link_to 'See workout', workout_path(workout), class:"btn btn-primary" %>
+    <% if workout.user_id == current_user.id %>
+      This is my workout! I should be able to manage it from here
+    <% elsif workout.bookings.any? do |booking| %>
+      <% if booking.user_id == current_user.id  %>
+        <%= link_to 'Cancel booking', booking_path(booking),
+          class:"btn btn-outline-danger",
+          data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+    <% end %>
+    <% end %>
+    <% end %>
   </div>
 </div>
-
-
-<%#= datetime %>
-<%#= category %>
-<%#= level %>
-<%#= location %>
-<%#= address %>

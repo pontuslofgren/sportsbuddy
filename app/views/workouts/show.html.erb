@@ -4,9 +4,13 @@
     <div class="container py-5" style="height: 400px;">
       <div class="d-flex flex-column justify-content-between h-100">
         <div>
-          <a href="/" class="back-button">
+          <%= link_to workouts_path , class:"back-button" do %>
             <i class="fas fa-arrow-left"></i>
-          </a>
+          <% end %>
+
+          <%# <a href="" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+          </a> %>
         </div>
         <div class="title">
           <h1 class="display-2 fw-bold"><%= @workout.title %></h1>
@@ -35,14 +39,16 @@
         <div class="row justify-content-between g-3 mb-3">
           <div class="col-md-6">
             <div class="card-showpage d-flex justify-content-center align-items-center flex-column p-3 shadow rounded">
-              <p class="fs-2 m-0 font-weight-bold">1</p>
+              <p class="fs-2 m-0 font-weight-bold">
+                <%= @workout.bookings.where(status: true).count %>
+              </p>
               <small>Buddies Confirmed</small>
             </div>
           </div>
           <div class="col-md-6">
             <div class="card-showpage d-flex justify-content-center align-items-center flex-column p-3 shadow rounded">
-              <p class="fs-2 m-0 font-weight-bold">2</p>
-              <small>Buddies visited this event</small>
+              <p class="fs-2 m-0 font-weight-bold"> <%= @workout.spots %></p>
+              <small>Spots</small>
             </div>
           </div>
         </div>

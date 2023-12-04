@@ -1,11 +1,10 @@
 .navbar {
   // position: relative; // or any other value than 'static'
-  z-index: 2; // any value higher than the radar's z-index
-  background-color: #1E293B;
+
 }
 
 .inside-navbar {
-  margin: 10px;
+  // margin: 10px;
   // padding-left: 50px;
   // padding-right: 50px;
 }
@@ -13,4 +12,17 @@
 .nav-link:hover {
   color: #cecece; /* Change the color to red when hovered */
   text-decoration: underline;/* Add underline when hovered */
+}
+
+
+@media (max-width: 768px) {
+  .sb-full-width {
+      width: 100%;
+      margin-bottom: 1em;
+  }
+}
+
+.sb-navbar {
+  z-index: 2; // any value higher than the radar's z-index
+  background-color: #1E293B;
 }
