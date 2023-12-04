@@ -1,8 +1,56 @@
-<div class="container">
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        h1, h2 {
+            color: #0066cc;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            text-align: justify;
+            margin-bottom: 50px;
+        }
+
+        .about-image {
+            max-width: 30%;
+            margin-bottom: 15px;
+            border-radius: 15px;
+        }
+
+    </style>
+</head>
+<body>
+  <div class="container">
     <h1>About Us</h1>
-    <p>Here at our website, we provide the best services to our clients. Our team is made up of experienced professionals who are passionate about what they do.</p>
-    <h2>Our Vision</h2>
-    <p>Our vision is to be the number one choice for our clients. We strive to provide services that are second to none, and to maintain long-lasting relationships with our clients.</p>
-    <h2>Our Mission</h2>
-    <p>Our mission is to provide top-notch services to our clients, and to consistently improve the quality of our work. We believe in offering services that exceed our clients' expectations, and in providing the best customer experience possible.</p>
+    <div style="display: flex; align-items: flex-start; ">
+    <%= image_tag("istockphoto-1346944001-612x612.png", alt: "Your Image", style: "margin-right: 20px;", class: "about-image") %>
+    <p>Welcome to Sports Buddy, an innovative platform where fitness meets social networking. Conceived by a dynamic trio – Pontus Lofgren, Wilmar Putz, and Hugo Duffoux – Sports Buddy is more than just a website or an app; it's a community. Each of us carries a profound passion for sports and fitness, and it's this shared enthusiasm that gave birth to Sports Buddy. Our platform is designed with a simple yet powerful idea: to ensure that no one walks their fitness journey alone.
+At Sports Buddy, we bring together the best of technology and human connection. Whether you're a yoga enthusiast, a strength training aficionado, or a cardio junkie, our versatile workout creator allows you to design fitness routines that align perfectly with your goals and preferences. But that's just the beginning. Sports Buddy is also your passport to finding workout buddies, a chance to connect with a global community of fitness enthusiasts. Our platform is not just about workouts; it's about building relationships, fostering motivation, and sharing the joy of fitness with others.</p>
     </div>
+    <h2>Our Vision</h2>
+    <div style="display: flex; align-items: flex-start;">
+    <%= image_tag("1645193416154.png", alt: "Your Image", style: "margin-right: 20px;", class: "about-image") %>
+    <p>Our vision at Sports Buddy is to revolutionize the way people approach fitness and sports. We envision a world where fitness is not just an individual pursuit but a shared experience, enriched by the power of community. We aim to empower individuals in their fitness journey, making it more enjoyable, accessible, and engaging. Our dream is to create a global network where everyone, regardless of their fitness level, can find support, motivation, and camaraderie. We see Sports Buddy as a catalyst for a healthier, more active world, where every workout is an opportunity for connection and growth.</p>
+    </div>
+    <h2>Our Mission</h2>
+    <div style="display: flex; align-items: flex-start;">
+    <%= image_tag("businesswoman-holding-card-text-our-mission-199451995.png", alt: "Your Image", style: "margin-right: 20px;", class: "about-image") %>
+    <p>At Sports Buddy, we're on a mission to empower everyone in their fitness journey. Our inclusive platform is designed for all levels of fitness enthusiasts, whether you're a beginner or a seasoned athlete. We're committed to creating a vibrant community that encourages active lifestyles, shared achievements, and the joy of fitness. Our goal is to make organizing and participating in fitness activities effortless and enjoyable. Join us and be part of a thriving social network for the active and health-conscious, where we transform every workout into an unforgettable and rewarding experience.</p>
+    </div>
+  </div>
+</body>
+</html>
