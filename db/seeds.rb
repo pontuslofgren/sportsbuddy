@@ -87,6 +87,10 @@ workout_seeds.each_with_index do |seed_hash, index|
 
     if workout.save
       puts "#{index + 1}: #{workout.title}"
+      chatroom = Chatroom.new(workout_id: workout.id)
+      if chatroom.save
+        puts "> chatroom created"
+      end
     else
       puts "Failure: #{workout.errors.full_messages}"
     end

@@ -1,0 +1,6 @@
+<%= simple_form_for(@booking) do |f| %>
+  <%= f.input :comment %>
+  <%= f.input :attendees %>
+  <%= link_to 'Go back', workout_path(params[:id]), class:'btn btn-outline-primary' %>
+  <%= f.submit 'Join', class:"btn btn-primary" %>
+<% end %>

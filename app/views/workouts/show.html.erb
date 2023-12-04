@@ -16,8 +16,20 @@
           <h1 class="display-2 fw-bold"><%= @workout.title %></h1>
         </div>
         <div class="d-flex justify-content-end gap-3">
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#joinModal">Join Event</button>
-          <button class="btn btn-light" >Enter in the chat</button>
+          <% if user_signed_up_to_workout?(@workout) %>
+            <%= link_to 'Enter chat', chatroom_path(@workout.chatroom), class:"btn btn-primary text-white" %>
+            <% if user_has_booked_workout?(@workout) %>
+              <%= link_to 'Cancel booking', booking_path(current_user.bookings.find_by(workout_id: @workout.id)),
+                class:"btn btn-danger",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+            <% elsif user_owns_workout?(@workout) %>
+              <%= link_to 'Cancel workout', workout_path,
+                class:"btn btn-danger",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+            <% end %>
+          <% else %>
+            <%= link_to 'Join workout', new_booking_path, class:"btn btn-primary text-white" %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -74,6 +86,3 @@
       </div>
   </div>
 </div>
-
-
-<%= render 'bookings/form' %>
