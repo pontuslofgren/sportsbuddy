@@ -1,4 +1,4 @@
-<div class="pb-5" style="background-color: #0A142F">
+<div class="pb-5">
 
 <!-- HERO SECTION -->
 <div class="container py-5">
@@ -12,18 +12,14 @@
     </div>
 
     <!-- RADAR -->
-    <div class="col-lg-4">
+    <div class="col-md-10 mx-auto col-lg-5 radar-background">
       <%= render "shared/radar" %>
     </div>
   </div>
 </div>
 
 <div class="row container ms-auto me-auto d-flex justify-content-center mt-5">
-  <% @workouts.each do |workout| %>
-    <div class="col-md-4">
-      <%= render "shared/card", workout: workout %>
-    </div>
-  <% end %>
+    <%= render "shared/card"%>
 </div>
 
 </div>

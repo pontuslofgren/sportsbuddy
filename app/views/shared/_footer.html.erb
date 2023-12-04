@@ -8,12 +8,12 @@
       <!-- Logo and © notice -->
       <div class="col-md-3 mb-3 me-auto">
         <%= image_tag("sportsbuddy_logo.png", alt: "Sports Buddy Logo", width: 200) %>
-        <p class="Sport-Buddy">© Sport Buddy 2023</p>
+        <p class="Sport-Buddy mt-5">© Sports Buddy 2023</p>
       </div>
 
 
       <div class="col-md-3 mb-3">
-        <h5>Sport Buddy</h5>
+        <h5>Sports Buddy</h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2">Phone Number:<a href="#" class="nav-link p-0 text-body-secondary"><%= link_to '(+351) 912 345 678', 'https://wa.me/351912345678' %></a></li>
           <li class="nav-item mb-2">or send an email to <%= mail_to 'company@sportbuddy.com' %></li>
@@ -32,8 +32,7 @@
       <div class="col-md-3 mb-3">
         <h5>Activity with everybuddy!</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2">Want to be part of the movement? <%= link_to 'Sign up!', new_user_registration_path %></li>
-          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
+          <li class="nav-item mb-2 mt-3">Want to be part of the movement? <%= link_to 'Sign up!', new_user_registration_path %></li>
         </ul>
       </div>
 
