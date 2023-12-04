@@ -17,7 +17,9 @@
         </div>
         <div class="d-flex justify-content-end gap-3">
           <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#joinModal">Join Event</button>
-          <button class="btn btn-light" >Enter in the chat</button>
+          <% if user_signed_up_to_workout?(@workout) %>
+            <%= link_to 'Enter chat', chatroom_path(@workout.chatroom) %>
+          <% end %>
         </div>
       </div>
     </div>

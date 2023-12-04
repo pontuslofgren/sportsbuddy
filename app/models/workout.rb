@@ -7,6 +7,7 @@ class Workout < ApplicationRecord
   belongs_to :category
   belongs_to :location
   has_many :bookings, dependent: :destroy
+  has_one :chatroom
 
   # Geocoding
   geocoded_by :address
