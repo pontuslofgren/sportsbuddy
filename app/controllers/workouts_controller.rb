@@ -45,6 +45,7 @@ class WorkoutsController < ApplicationController
 
     @workout.user_id = current_user.id
     if @workout.save
+      Chatroom.create(workout_id: @workout.id)
       redirect_to workout_path(@workout)
     else
       render :new, status: :unprocessable_entity
