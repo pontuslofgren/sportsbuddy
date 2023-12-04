@@ -1,20 +1,23 @@
 <div class="pb-5" style="background-color: #0A142F">
 
 <!-- HERO SECTION -->
-<div class="container col-xl-10 col-xxl-8 px-4 py-5 w-100">
+<div class="container py-5">
+  <div class="row align-items-center py-5">
   <!-- TEXT BANNER -->
-  <div class="row align-items-center g-lg-5 py-5">
-    <div class="col-lg-6 text-center text-lg-start">
-      <h1 class="display-4 fw-bold lh-1 mb-3 title-shadowed">Making sports social, one match at a time</h1>
-      <p class="col-lg-10 fs-4 shadowed">Ditch the solo workouts and embrace the power of teamwork with SportsBuddy, your gateway to a world of shared passions, newfound friendships, and exhilarating sporting experiences.</p>
+    <div class="col-lg-6">
+      <h1 class="display-4 fw-bold mb-3 title-shadowed">Making sports social, one match at a time</h1>
+      <p class="fs-4 shadowed">Ditch the solo workouts and embrace the power of teamwork with SportsBuddy, your gateway to a world of shared passions, newfound friendships, and exhilarating sporting experiences.</p>
+      <%= link_to 'Post a workout', new_workout_path, class:"btn btn-primary btn-lg text-white" %>
+      <%= link_to 'Find a workout', workouts_path, class:"btn btn-outline-primary btn-lg text-white" %>
     </div>
 
     <!-- RADAR -->
-    <div class="col-md-10 mx-auto col-lg-5">
+    <div class="col-lg-4">
       <%= render "shared/radar" %>
     </div>
   </div>
 </div>
+
 <div class="row container ms-auto me-auto d-flex justify-content-center mt-5">
   <% @workouts.each do |workout| %>
     <div class="col-md-4">
