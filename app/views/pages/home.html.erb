@@ -1,4 +1,4 @@
-<body style="background-color: #0A142F">
+<div class="pb-5" style="background-color: #0A142F">
 
 <!-- HERO SECTION -->
 <div class="container col-xl-10 col-xxl-8 px-4 py-5 w-100">
@@ -17,10 +17,10 @@
 </div>
 <div class="row container ms-auto me-auto d-flex justify-content-center mt-5">
   <% @workouts.each do |workout| %>
-    <div class="col-sm-12 col-md-4">
+    <div class="col-md-4">
       <%= render "shared/card", workout: workout %>
     </div>
   <% end %>
 </div>
 
-</body>
+</div>

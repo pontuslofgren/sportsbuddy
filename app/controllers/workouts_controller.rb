@@ -24,6 +24,7 @@ class WorkoutsController < ApplicationController
   def show
     @workout = Workout.find(params[:id])
     @markers = [{ lat: @workout.latitude, lng: @workout.longitude }]
+    @booking = Booking.new
   end
 
 

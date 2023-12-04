@@ -1,58 +1,79 @@
-<body class="my-background">
-<!--HERO SECTION-->
-<div class="hero">
-  <a href="/" class="back-button">
-    <i class="fas fa-arrow-left"></i>
-  </a>
-  <div class="title">
-    <h1 class="hero-title"><%= @workout.title %></h1>
+<div class="my-background pb-5">
+  <!--HERO SECTION-->
+  <div class="hero" style="background-image: linear-gradient(180deg, rgba(30, 41, 59, 0.00) 0%, #1E293B 100%), url('<%= image_path "cover-categories/#{@workout.category.name}.png" %>')">
+    <div class="container py-5" style="height: 400px;">
+      <div class="d-flex flex-column justify-content-between h-100">
+        <div>
+          <%= link_to workouts_path , class:"back-button" do %>
+            <i class="fas fa-arrow-left"></i>
+          <% end %>
 
-  </div>
-  <div class="buttons">
-    <button class="btn btn-primary join-button">Join Event</button>
-    <button class="btn btn-primary chat-button" >Enter in the chat</button>
-  </div>
-</div>
-
-<!--EVENT DETAILS SECTION -->
-<div class="event-details-container container mt-5">
-  <div class="event-details">
-    <div class="title-like-container">
-      <h2 class="event-title">About the Event</h2>
-        <a href="#" class="like-button">
-          <%= image_tag "icons/heart-regular.svg"%>
-        </a>
-      </div>
-      <a href="#" class="event-address" style="color: #4287F5"> <%= image_tag 'icons/location-dot-solid.svg', class: 'pin-icon' %><%= @workout.address %></a>
-      <p class="event-date opacity-75 mt-4"> <%= image_tag 'icons/calendar.svg'%> <%= format_date_time(@workout.start_date_time)%></p>
-    <p class="event-description opacity-75"><%= @workout.description %></p>
-    <div class="cards-container-showpage">
-      <div class="card-showpage">
-        <p class="card-number">1</p>
-        <small>Buddies Confirmed</small>
-      </div>
-      <div class="card-showpage">
-        <p class="card-number">2</p>
-        <small>Buddies visited this event</small>
+          <%# <a href="" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+          </a> %>
+        </div>
+        <div class="title">
+          <h1 class="display-2 fw-bold"><%= @workout.title %></h1>
+        </div>
+        <div class="d-flex justify-content-end gap-3">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#joinModal">Join Event</button>
+          <button class="btn btn-light" >Enter in the chat</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <div style="height: 500px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  <!--EVENT DETAILS SECTION -->
+  <div class="container my-5">
+    <div class="row justify-content-between gx-5">
+      <div class="col-md-8">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 class="fw-bold fs-1">About the Event</h2>
+            <a href="#" class="like-button">
+              <%= image_tag "icons/heart-regular.svg"%>
+            </a>
+          </div>
+          <a href="#" class="" style="color: #4287F5"> <%= image_tag 'icons/location-dot-solid.svg', class: 'pin-icon' %><%= @workout.address %></a>
+          <p class="text-muted mt-4"> <i class="fa-regular fa-calendar-days me-1"></i> <%= format_date_time(@workout.start_date_time)%></p>
+        <p class="text-muted"><%= @workout.description %></p>
+        <div class="row justify-content-between g-3 mb-3">
+          <div class="col-md-6">
+            <div class="card-showpage d-flex justify-content-center align-items-center flex-column p-3 shadow rounded">
+              <p class="fs-2 m-0 font-weight-bold">
+                <%= @workout.bookings.where(status: true).count %>
+              </p>
+              <small>Buddies Confirmed</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card-showpage d-flex justify-content-center align-items-center flex-column p-3 shadow rounded">
+              <p class="fs-2 m-0 font-weight-bold"> <%= @workout.spots %></p>
+              <small>Spots</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="rounded" style="height: 300px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!--BUDDIES EVENT SECTION-->
+  <div class="container">
+    <h2 class="fw-bold fs-1">Buddies</h2>
+      <div class="row g-3 mt-3">
+        <% 5.times do %>
+          <%= render "shared/card_buddies" %>
+        <% end %>
+      </div>
+  </div>
 </div>
 
-<!--BUDDIES EVENT SECTION-->
-<div class="container" style="margin-top: 50px">
-  <h2 class="section-title">Buddies</h2>
-    <div class="buddies-section mt-3">
-      <% 5.times do %>
-        <%= render "shared/card_buddies" %>
-      <% end %>
-    </div>
-</div>
-</body>
+
+<%= render 'bookings/form' %>
