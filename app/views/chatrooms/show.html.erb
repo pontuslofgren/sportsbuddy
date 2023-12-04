@@ -1,23 +1,78 @@
-<div class="container chatroom"
-  data-controller="chatroom-subscription"
-  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-  <h1>#<%= @chatroom.workout.title %></h1>
+<div class="container my-5">
 
-  <div class="messages" data-chatroom-subscription-target="messages">
-    <% @chatroom.messages.each do |message| %>
-      <%= render "messages/message", message: message %>
+  <div class="row gx-5">
+    <div class="col-md-4 chat-sidebar">
+      <h3>Your chats</h3>
+
+        <div class="mb-3">
+          <h5>Your workouts</h5>
+          <% if current_user.workouts.any? %>
+            <div class="list-group">
+              <% current_user.workouts.each do |workout| %>
+                <% chatroom = workout.chatroom %>
+                <%= link_to chatroom_path(chatroom), class:"list-group-item list-group-item-action #{'active' if current_page?(chatroom_path(chatroom))}" do %>
+                  <h6><%= workout.title %></h6>
+                  <% if chatroom.messages.any? %>
+                    <span class="small">Last message sent <%= time_ago_in_words(chatroom.messages.last.created_at) %> ago</span>
+                  <% else %>
+                    <span class="small">No messages, yet</span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <p>You don't have any workouts</p>
+          <% end %>
+        </div>
+
+        <div class="mb-3">
+          <h5>Your bookings</h5>
+          <% if current_user.bookings.any? %>
+            <div class="list-group">
+              <% current_user.bookings.each do |booking| %>
+                <% chatroom = booking.workout.chatroom %>
+                <%= link_to chatroom_path(chatroom), class:"list-group-item list-group-item-action #{'active' if current_page?(chatroom_path(booking.workout.chatroom))}" do %>
+                  <h6><%= booking.workout.title %></h6>
+                  <% if chatroom.messages.any? %>
+                    <span class="small">Last message sent <%= time_ago_in_words(chatroom.messages.last.created_at) %> ago</span>
+                  <% else %>
+                    <span class="small">No messages, yet</span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <p>You don't have any bookings</p>
+          <% end %>
+        </div>
+    </div>
+
+    <div class="col-md-8 chatroom d-flex flex-column chatroom-container"
+      data-controller="chatroom-subscription"
+      data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+      <h1>#<%= @chatroom.workout.title %></h1>
+
+      <div class="messages flex-grow-1" data-chatroom-subscription-target="messages">
+        <% @chatroom.messages.each do |message| %>
+          <%= render "messages/message", message: message %>
+        <% end %>
+      </div>
+
+      <%= simple_form_for [@chatroom, @message],
+      html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
+      %>
+
+      <div class="input-group input-group-lg">
+      <%= f.input_field :content,
+        class:"form-control",
+        placeholder: "Message ##{@chatroom.workout.title}"
+      %>
+      <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+        Send <i class="ms-2 fa-solid fa-paper-plane"></i>
+      <% end %>
+      </div>
     <% end %>
+    </div>
   </div>
-
-  <%= simple_form_for [@chatroom, @message],
-  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
-  %>
-  <%= f.input :content,
-    label: false,
-    placeholder: "Message ##{@chatroom.workout.title}",
-    wrapper_html: {class: "flex-grow-1"}
-  %>
-  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-<% end %>
 
 </div>

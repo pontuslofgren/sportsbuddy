@@ -1,5 +1,6 @@
 class WorkoutsController < ApplicationController
   before_action :set_workouts, only: [:index]
+  before_action :set_workout, only: %i[show destroy]
 
   def index
     @workouts = @workouts.where(category_id: params[:category_query]) if params[:category_query].present?
@@ -22,7 +23,6 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-    @workout = Workout.find(params[:id])
     @markers = [{ lat: @workout.latitude, lng: @workout.longitude }]
     @booking = Booking.new
   end
@@ -45,17 +45,27 @@ class WorkoutsController < ApplicationController
 
     @workout.user_id = current_user.id
     if @workout.save
-      Chatroom.create(workout_id: @workout.id)
+      chatroom = Chatroom.new(workout_id: @workout.id)
+      chatroom.save
       redirect_to workout_path(@workout)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def destroy
+    @workout.destroy
+    redirect_to profile_path(current_user), notice: "Workout canceled successfully"
+  end
+
   private
 
   def set_workouts
     @workouts = Workout.all
+  end
+
+  def set_workout
+    @workout = Workout.find(params[:id])
   end
 
   def workout_params

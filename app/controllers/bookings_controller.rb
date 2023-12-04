@@ -1,5 +1,9 @@
 class BookingsController < ApplicationController
 
+  def new
+    @booking = Booking.new()
+  end
+
   def create
     @booking = Booking.new(bookings_params)
     @workout = Workout.find(params[:id])
@@ -8,14 +12,15 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to profile_path(current_user)
     else
-      raise
-      render 'workouts/show', status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     @booking = Booking.find(params[:id])
-    @booking.destroy
+    if @booking.destroy
+      redirect_to profile_path(current_user.id), notice: 'Booking canceled succesfully'
+    end
   end
 
   private

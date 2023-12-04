@@ -5,13 +5,22 @@ module ApplicationHelper
 
   def user_signed_up_to_workout?(workout)
     # user is creator of workout
-    if workout.user == current_user
+    if user_owns_workout?(workout)
       return true
-    elsif workout.bookings.any?
-      workout.bookings.each { |booking| booking.user == current_user }
+    elsif user_has_booked_workout?(workout)
       return true
     else
       return false
+    end
+  end
+
+  def user_owns_workout?(workout)
+    workout.user == current_user
+  end
+
+  def user_has_booked_workout?(workout)
+    if workout.bookings.any?
+      workout.bookings.each { |booking| booking.user == current_user }
     end
   end
 end

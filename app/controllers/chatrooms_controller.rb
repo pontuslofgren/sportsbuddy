@@ -7,5 +7,6 @@ class ChatroomsController < ApplicationController
       @chatroom = chatroom
       @message = Message.new
     end
+    # list all workouts and bookings, get the chatrooms
   end
 end
