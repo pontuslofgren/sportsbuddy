@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :profiles
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 
 
 
