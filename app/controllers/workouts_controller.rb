@@ -71,7 +71,7 @@ class WorkoutsController < ApplicationController
   def workout_params
     params.require(:workout).permit(:title, :description, :start_date,
       :start_time, :duration, :address, :latitude, :longitude, :spots,
-      :category_id, :level_id, :location_id)
+      :category_id, :level_id, :location_id, :amount)
   end
 
   # # Formats "Wed 2023-11-29 at 15:45" to DateTimeObject
