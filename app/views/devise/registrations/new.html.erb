@@ -1,37 +1,51 @@
-<div class="container mt-5">
-<h2>Sign up</h2>
+<div class="container mt-5 mb-5 shadow-lg custom-style-signup">
+
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
+<div>
+<h2 class="text-center mb-4">Sign Up</h2>
   <div class="form-inputs row g-3">
-  <div class="col-md-6">
-    <%= f.input :first_name,
+
+    <div class="col-md-6">
+      <%= f.input :first_name,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "text" }%>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.input :last_name,
                   required: true,
-                  autofocus: true,
                   input_html: { autocomplete: "text" }%>
-                  </div>
-  <div class="col-md-6">
-    <%= f.input :last_name,
-                  required: true,
-                  input_html: { autocomplete: "text" }%>
-                  </div>
-  <div>
+    </div>
+
+    <div>
     <%= f.input :biography,
                   required: true,
                   input_html: { autocomplete: "text" }%>
-                  </div>
+    </div>
+
+    <div class="col-md-6">
     <%= f.input :address,
                   required: true,
                   input_html: { autocomplete: "text" }%>
+    </div>
 
+    <div class="col-md-6">
     <%= f.input :photo,
                   label: "Photo", as: :file,
                   input_html: { multiple: false, class: "form-control" } %>
+    </div>
 
+
+    <div>
     <%= f.input :email,
                 required: true,
                 input_html: { autocomplete: "email" }%>
+    </div>
+
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -41,10 +55,8 @@
                 input_html: { autocomplete: "new-password" } %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+  <div class="form-actions text-center btn btn-outline-primary mt-3 d-flex justify-content-center">
+    <%= f.button :submit, "Create account" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
 </div>
