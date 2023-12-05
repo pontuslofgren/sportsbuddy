@@ -9,7 +9,9 @@
 
 <div class="container mt-3 mb-5">
   <h3>Results</h3>
-  <div class="row">
+  <div class="row" data-controller="map"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY']%>"
+  data-map-markers-value="<%= @markers.to_json %>">
     <div class="col-md-8">
       <% @workouts.each do |workout| %>
         <%= render partial: "shared/list_card",
@@ -17,9 +19,7 @@
       <% end %>
     </div>
     <div class="col-md-4 border rounded" style="height: 500px;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">>
+      data-map-target="mapContainer">
     </div>
   </div>
 </div>

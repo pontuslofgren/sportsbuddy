@@ -7,13 +7,15 @@ export default class extends Controller {
     markers: Array
   }
 
+  static targets = ['mapContainer']
+
   connect() {
     console.log("Hello")
-    console.log(this.markersValue)
+    console.log("Found mapcontainer", this.mapContainerTarget)
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
-      container: this.element,
+      container: this.mapContainerTarget,
       style: "mapbox://styles/mapbox/dark-v11",
     })
 
