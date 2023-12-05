@@ -2,7 +2,7 @@
   <div class="mb-1">
     <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-clock me-2"></i><%= format_date_time(workout.start_date_time) %></span>
     <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-map-pin me-2"></i><%= workout.address %> (<%= workout.location.name.downcase %>)</span>
-    <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-person-running me-2"></i><%= workout.category.name %> (<%= workout.level.name.downcase %>)</span>
+    <span class="text-muted me-4 fs-sm"><%= image_tag "icons/sport.svg", class: "svg-icon me-2"%><%= workout.category.name %> (<%= workout.level.name.downcase %>)</span>
   </div>
   <div>
     <h3 class="fs-5 text-white"><%= workout.title %></h3>
