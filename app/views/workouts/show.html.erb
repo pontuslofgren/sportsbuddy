@@ -48,6 +48,14 @@
           </div>
           <a href="#" class="" style="color: #4287F5"> <%= image_tag 'icons/location-dot-solid.svg', class: 'pin-icon' %><%= @workout.address %></a>
           <p class="text-muted mt-4"> <i class="fa-regular fa-calendar-days me-1"></i> <%= format_date_time(@workout.start_date_time)%></p>
+          <p class="text-muted mt-4">
+          <i class="fas fa-money-bill-alt me-1"></i>
+          <% if @workout.amount == 0 %>
+            Free
+          <% else %>
+            <%= number_with_precision(@workout.amount/100.0, precision: 2, delimiter: '', separator: ',') %>
+          <% end %>
+          </p>
         <p class="text-muted"><%= @workout.description %></p>
         <div class="row justify-content-between g-3 mb-3">
           <div class="col-md-6">
@@ -81,8 +89,23 @@
   <div class="container">
     <h2 class="fw-bold fs-1">Buddies</h2>
       <div class="row g-3 mt-3">
-        <% 5.times do %>
-          <%= render "shared/card_buddies" %>
+        <% @workout.users.each do |user| %>
+         <% profile = user %>
+          <div class="col-md-3">
+            <%= link_to profile_path(user), class: 'link-decoration' do %>
+            <div class="card-buddies d-flex mb-3 text-align-center align-items-center rounded shadow p-3 h-100">
+              <% if profile.photo.attached? %>
+                <%= cl_image_tag profile.photo.key, class:"card-avatar rounded-circle me-3" %>
+              <% else %>
+                <i class="fa-solid fa-user fs-1 card-avatar"></i>
+              <% end %>
+              <div>
+                <p class="m-0"><%= profile.full_name %></p>
+                <small class="text-muted"><%= profile.biography.truncate_words(10) %></small>
+              </div>
+            </div>
+            <% end %>
+          </div>
         <% end %>
       </div>
   </div>
