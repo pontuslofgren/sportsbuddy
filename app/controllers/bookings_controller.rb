@@ -26,7 +26,6 @@ class BookingsController < ApplicationController
         }
       ],
         mode: 'payment',
-        # These placeholder URLs will be replaced in a following step.
         success_url: "#{request.protocol}#{request.host_with_port}/success/#{@booking.id}",
         cancel_url: "#{request.protocol}#{request.host_with_port}/cancel/#{@booking.id}",
         })

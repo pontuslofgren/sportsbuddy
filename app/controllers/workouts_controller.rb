@@ -11,6 +11,7 @@ class WorkoutsController < ApplicationController
     if params[:location].present?
       @workouts = @workouts.near(params[:location].split, 100)
     end
+    @workouts = @workouts.order(start_date_time: :asc)
 
     @markers = @workouts.geocoded.map do |workout|
       {
