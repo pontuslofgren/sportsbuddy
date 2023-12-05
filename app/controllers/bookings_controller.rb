@@ -27,11 +27,11 @@ class BookingsController < ApplicationController
       ],
         mode: 'payment',
         # These placeholder URLs will be replaced in a following step.
-        success_url: 'https://example.com/success',
-        cancel_url: 'https://example.com/cancel',
-      })
-
-      #@booking.checkout_session_id = session.id this could be done using parameter from success page?
+        success_url: "#{request.protocol}#{request.host_with_port}/success/#{@booking.id}",
+        cancel_url: "#{request.protocol}#{request.host_with_port}/cancel/#{@booking.id}",
+        })
+      session_id = session.id
+      @booking.update(checkout_session_id: session_id)
       redirect_to session.url, allow_other_host: true
     else
       render :new, status: :unprocessable_entity
@@ -44,6 +44,15 @@ class BookingsController < ApplicationController
       redirect_to profile_path(current_user.id), notice: 'Booking canceled succesfully'
     end
   end
+
+  def success
+   @booking = Booking.find(params[:id])
+  end
+
+  def cancel
+    @booking = Booking.find(params[:id])
+    redirect_to workout_path(@booking.workout)
+   end
 
   private
 
