@@ -30,6 +30,17 @@
           include_hidden: false %>
       </div>
       <div class="mb-3">
+        <%= f.input :amount,
+          collection: [['Free', 0], ['€5', 500], ['€10', 1000]],
+          label: "Amount",
+          as: :radio_buttons,
+          collection_wrapper_tag: 'div',
+          collection_wrapper_class: 'category-wrapper',
+          item_wrapper_class: ['category-item', 'border', 'rounded'],
+          input_html: {class: 'category-selector'},
+          include_hidden: false %>
+      </div>
+      <div class="mb-3">
         <%= f.input :spots,
           label: "Number of spots",
           as: :range,

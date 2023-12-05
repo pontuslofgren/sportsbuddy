@@ -14,11 +14,4 @@ class Booking < ApplicationRecord
       errors.add(:attendees, "cannot exceed number of available spots")
     end
   end
-
-  # Does this make sense?
-  # Or should the validation exist in the workout model?
-
-
-  # + how do i render the error messages in a modal on the show page?
-
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_04_103159) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_04_204520) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_103159) do
     t.datetime "updated_at", null: false
     t.integer "attendees", default: 1
     t.string "comment"
+    t.string "state"
+    t.integer "amount"
+    t.string "checkout_session_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
     t.index ["workout_id"], name: "index_bookings_on_workout_id"
   end
@@ -136,6 +139,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_103159) do
     t.bigint "location_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "amount"
     t.index ["category_id"], name: "index_workouts_on_category_id"
     t.index ["level_id"], name: "index_workouts_on_level_id"
     t.index ["location_id"], name: "index_workouts_on_location_id"
