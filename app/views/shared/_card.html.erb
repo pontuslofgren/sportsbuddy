@@ -1,56 +1,56 @@
 <div class="cards row">
 
-    <%= link_to workouts_path(category_query: [3]), class: 'link-decoration' do %>
+    <%= link_to workouts_path(category_query: [Category.find_by(name:'Yoga').id]), class: 'link-decoration' do %>
       <div class="card-category custom-homepage-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path("card-photo/Yoga.jpg")%>)">
         Yoga
       </div>
     <% end %>
 
-    <%= link_to workouts_path(category_query: [7]), class: 'link-decoration' do %>
+    <%= link_to workouts_path(category_query: [Category.find_by(name:'Bicycle').id]), class: 'link-decoration' do %>
     <div class="card-category custom-homepage-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path("card-photo/Bicycle.jpg")%>)">
       Bicycle
     </div>
     <% end %>
 
-    <%= link_to workouts_path(category_query: [9]), class: 'link-decoration' do %>
+    <%= link_to workouts_path(category_query: [Category.find_by(name:'Other').id]), class: 'link-decoration' do %>
       <div class="card-category custom-homepage-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path("card-photo/Other.jpg")%>)">
         Other
       </div>
     <% end %>
 
-    <%= link_to workouts_path(category_query: [6]), class: 'link-decoration' do %>
+    <%= link_to workouts_path(category_query: [Category.find_by(name:'Cardio').id]), class: 'link-decoration' do %>
       <div class="card-category custom-homepage-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path("card-photo/Cardio.jpg")%>)">
         Cardio
       </div>
     <% end %>
 
-    <%= link_to workouts_path(category_query: [5]), class: 'link-decoration' do %>
+    <%= link_to workouts_path(category_query: [Category.find_by(name:'Racket sport').id]), class: 'link-decoration' do %>
     <div class="card-category custom-homepage-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path("card-photo/Racketsport.jpg")%>)">
       Racket Sports
     </div>
     <% end %>
 
-    <%= link_to workouts_path(category_query: [4]), class: 'link-decoration' do %>
+    <%= link_to workouts_path(category_query: [Category.find_by(name:'Swimming').id]), class: 'link-decoration' do %>
       <div class="card-category custom-homepage-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path("card-photo/Swimming.jpg")%>)">
         Swimming
       </div>
     <% end %>
 
 
-    <%= link_to workouts_path(category_query: [8]), class: 'link-decoration' do %>
+    <%= link_to workouts_path(category_query: [Category.find_by(name:'Rowing').id]), class: 'link-decoration' do %>
       <div class="card-category custom-homepage-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path("card-photo/Rowing.jpg")%>)">
         Rowing
       </div>
     <% end %>
 
 
-    <%= link_to workouts_path(category_query: [2]), class: 'link-decoration' do %>
+    <%= link_to workouts_path(category_query: [Category.find_by(name:'Strength').id]), class: 'link-decoration' do %>
       <div class="card-category custom-homepage-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path("card-photo/Strength.jpg")%>)">
         Strength
       </div>
     <% end %>
 
-    <%= link_to workouts_path(category_query: [1]), class: 'link-decoration' do %>
+    <%= link_to workouts_path(category_query: [Category.find_by(name:'Running').id]), class: 'link-decoration' do %>
       <div class="card-category custom-homepage-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path("card-photo/Running.jpg")%>)">
         Running
       </div>
