@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="col-6 mx-auto">
+    <div class="mb-3">
+      <h2>Thank you <%= current_user.first_name %> for your booking!</h2>
+      <p class="lead">We hope you're excited to workout with <%= @booking.workout.user.full_name %>.</p>
+      <p>Send a message to your workout buddies and introduce yourself!</p>
+      <%= link_to 'Open chat', chatroom_path(@booking.workout.chatroom), class:'btn btn-primary' %>
+      <%= link_to 'View bookings', profile_path(current_user.id), class:'btn btn-outline-primary' %>
+    </div>
+    <div class="mb-3">
+      <h4>Don't forget the workout details</h4>
+        <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td>Workout</td>
+          <td><%= @booking.workout.title %></td>
+        </tr>
+        <tr>
+          <td>Amount paid</td>
+          <td>€<%= @booking.amount / 100 %></td>
+        </tr>
+        <tr>
+          <td>Attendees</td>
+          <td><%= pluralize @booking.attendees, 'person' %></td>
+        </tr>
+        <tr>
+          <td>Workout date</td>
+          <td><%= @booking.workout.start_date %></td>
+        </tr>
+        <tr>
+          <td>Workout time</td>
+          <td><%= @booking.workout.start_time.strftime('%H:%M') %></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td><%= @booking.workout.address %></td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>
