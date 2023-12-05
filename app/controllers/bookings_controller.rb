@@ -30,8 +30,8 @@ class BookingsController < ApplicationController
         success_url: 'https://example.com/success',
         cancel_url: 'https://example.com/cancel',
       })
-
-      #@booking.checkout_session_id = session.id this could be done using parameter from success page?
+      session_id = session.id
+      @booking.update(checkout_session_id: session_id) #this could be done using parameter from success page?
       redirect_to session.url, allow_other_host: true
     else
       render :new, status: :unprocessable_entity

@@ -54,7 +54,7 @@ gem "cloudinary"
 gem "geocoder"
 gem "pg_search"
 gem 'stripe'
-
+gem "stripe_event"
 
 
 group :development, :test do
