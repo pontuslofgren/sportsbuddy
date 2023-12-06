@@ -21,15 +21,15 @@
 
         <ul class="navbar-nav">
             <% if user_signed_in? %>
-              <li class="nav-item">
+              <li class="nav-item dropdown">
                 <a href="#" class="nav-link" id="avatarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <% if current_user.photo.attached? %>
-                    <%= cl_image_tag current_user.photo.key, height: 45, width: 45, crop: :fill, class: "rounded-circle border" %>
+                    <%= cl_image_tag current_user.photo.key, height: 45, width: 45, crop: :fill, class: "rounded-circle border"%>
                   <% else %>
                     <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "rounded-circle", alt: "User Avatar", width: "45", height: "45" %>
                   <% end %>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
+                <div class="dropdown-menu dropdown-menu-down animated-dropdown" aria-labelledby="avatarDropdown">
                   <%= link_to "Profile", profile_path(current_user.id), class: "dropdown-item" %>
                   <%# Check if user has any bookings or workouts %>
                   <%# if user does not have any bookings or workouts, then he has no chatrooms %>
@@ -45,8 +45,13 @@
                   </div>
               </li>
             <% else %>
-              <li class="nav-item">.
-                <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+              <li class="nav-item">
+                <% if user_signed_in? %>
+              <%= link_to 'Profile', profile_path(current_user.id), class:"text-white btn sb-full-width #{current_page?(profile_path(current_user)) ? "btn-primary" : "btn-outline-primary"}" %>
+            <% else %>
+              <%= link_to 'Log in', new_user_session_path, class:"text-white btn btn-outline-primary sb-full-width" %>
+              <%= link_to 'Sign up', new_user_registration_path, class:"text-white btn btn-outline-primary sb-full-width" %>
+            <% end %>
               </li>
             <% end %>
           </ul>
