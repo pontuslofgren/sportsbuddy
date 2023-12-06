@@ -45,8 +45,13 @@
                   </div>
               </li>
             <% else %>
-              <li class="nav-item">.
-                <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+              <li class="nav-item">
+                <% if user_signed_in? %>
+              <%= link_to 'Profile', profile_path(current_user.id), class:"text-white btn sb-full-width #{current_page?(profile_path(current_user)) ? "btn-primary" : "btn-outline-primary"}" %>
+            <% else %>
+              <%= link_to 'Log in', new_user_session_path, class:"text-white btn btn-outline-primary sb-full-width" %>
+              <%= link_to 'Sign up', new_user_registration_path, class:"text-white btn btn-outline-primary sb-full-width" %>
+            <% end %>
               </li>
             <% end %>
           </ul>

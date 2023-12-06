@@ -1,6 +1,6 @@
 .chatroom-container {
-  // border: 1px solid pink;
-
+  border: 1px solid;
+  border-radius: 10px;
 }
 
 .chatroom {
@@ -16,4 +16,13 @@
   // border: 1px solid blue;
   max-height: 60vh;
   overflow: scroll;
+}
+
+.centered-title {
+  text-align: center;
+  color: white;
+}
+
+.centered-title a{
+  text-decoration: none;
 }
