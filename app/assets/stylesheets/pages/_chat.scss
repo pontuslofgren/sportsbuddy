@@ -1,6 +1,7 @@
 .chatroom-container {
-  border: 1px solid;
   border-radius: 10px;
+  background-image: linear-gradient(to right top, #1a2330, #1c2533, #1e2836, #202b39, #1e293b);
+  box-shadow: 0px 0px 19px 9px rgba(0,0,0,0.27);;
 }
 
 .chatroom {
@@ -25,4 +26,6 @@
 
 .centered-title a{
   text-decoration: none;
+  color: white;
+  opacity: 90%;
 }

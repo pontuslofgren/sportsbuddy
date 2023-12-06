@@ -1,6 +1,8 @@
+<div class="container mt-5 mb-5 shadow-lg custom-style-new-booking">
 <%= simple_form_for @booking, html: { data: { turbo: false } } do |f| %>
-  <%= f.input :comment %>
   <%= f.input :attendees %>
+  <%= f.input :comment %>
   <%= link_to 'Go back', workout_path(params[:id]), class:'btn btn-outline-primary' %>
   <%= f.submit 'Join', class:"btn btn-primary" %>
 <% end %>
+</div>

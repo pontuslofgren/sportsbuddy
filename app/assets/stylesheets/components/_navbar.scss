@@ -16,3 +16,24 @@
   z-index: 2; // any value higher than the radar's z-index
   background-color: #1E293B;
 }
+
+.dropdown-menu {
+  background-color: #1E293B;
+}
+
+.dropdown-menu a {
+  background-color: #1E293B;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #52647d
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu-end {
+  margin-left: 150px;
+}

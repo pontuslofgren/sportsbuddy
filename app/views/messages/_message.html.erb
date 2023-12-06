@@ -1,7 +1,7 @@
 <div id="message-<%= message.id %>">
-  <small>
+  <small class="d-flex justify-content-between me-3 ms-2 opacity-75">
     <strong><%= message.user.full_name %></strong>
     <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
   </small>
-  <p><%= message.content %></p>
+  <p class="me-3 ms-2 mt-2"><b><%= message.content %></b></p>
 </div>
