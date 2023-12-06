@@ -55,6 +55,8 @@ gem "geocoder"
 gem "pg_search"
 gem 'stripe'
 gem "stripe_event"
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap-style'
 
 
 group :development, :test do

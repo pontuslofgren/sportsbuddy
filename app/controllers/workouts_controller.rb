@@ -12,12 +12,14 @@ class WorkoutsController < ApplicationController
       @workouts = @workouts.near(params[:location].split, 100)
     end
     @workouts = @workouts.order(start_date_time: :asc)
+    @workouts = @workouts.paginate(page: params[:page], per_page: 10)
 
     @markers = @workouts.geocoded.map do |workout|
       {
         lat: workout.latitude,
         lng: workout.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {workout: workout})
+        info_window_html: render_to_string(partial: "info_window", locals: {workout: workout}),
+        workout_id: workout.id
       }
     end
 

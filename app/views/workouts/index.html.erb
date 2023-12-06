@@ -17,9 +17,13 @@
         <%= render partial: "shared/list_card",
             locals: {workout: workout} %>
       <% end %>
+
+      <div class="d-flex justify-content-center mt-3">
+        <%= will_paginate @objects, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+      </div>
     </div>
-    <div class="col-md-4 border rounded" style="height: 500px;"
-      data-map-target="mapContainer">
+    <div class="col-md-4 border rounded sticky-top p-0" style="height: 500px;">
+      <div class="h-100 w-100" data-map-target="mapContainer"></div>
     </div>
   </div>
 </div>

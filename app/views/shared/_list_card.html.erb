@@ -1,4 +1,8 @@
-<div class="border rounded mb-3 p-3 shadow custom-list-card" data-controller="show-info" data-action="click->show-info#addShow" style="background-color: #1E293B">
+<div class="border rounded mb-3 p-3 shadow custom-list-card"
+data-controller="show-info"
+data-action="click->show-info#addShow"
+data-map-target="card"
+style="background-color: #1E293B">
   <div class="mb-1">
     <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-clock me-2"></i><%= format_date_time(workout.start_date_time) %></span>
     <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-map-pin me-2"></i><%= workout.address %> (<%= workout.location.name.downcase %>)</span>
