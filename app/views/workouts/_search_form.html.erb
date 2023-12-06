@@ -91,6 +91,21 @@
                 </div>
             </div>
           </div>
+
+          <div id="location_search" class="col-md-4">
+          <p class="m-0">Select max price</p>
+            <div class="input-group">
+              <%# <%= f.label :location_query, 'Select locations:' %>
+                <div class="pills-wrapper">
+                  <% [['Free', 0], ['€5', 500], ['€10', 1000]].each_with_index do |price, index| %>
+                    <div class="checkbox-pill">
+                      <%= f.check_box :price_query, { data: {search_workouts_target: "priceInput"}, multiple: true, class:"checkbox-selector-hide"  }, price[1], nil %>
+                      <%= label_tag "price_query_#{price[1]}", price[0], class:"checkbox-label-pill border shadow-sm" %>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-4">
           <%= submit_tag "Search", style:"width: 100px", name: "", class: "btn btn-primary text-white" %>

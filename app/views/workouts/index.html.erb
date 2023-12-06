@@ -5,21 +5,27 @@
   </button>
 </div>
 
-<div class="collapse border p-3 container mt-3 rounded" id="filter" style="background-color: #212529"><%= render 'search_form' %></div>
+<div class="collapse border p-1 container mt-3 rounded" id="filter" style="background-color: #212529">
+  <%= render 'search_form' %>
+</div>
 
 <div class="container mt-3 mb-5">
   <h3>Results</h3>
-  <div class="row">
+  <div class="row" data-controller="map"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY']%>"
+  data-map-markers-value="<%= @markers.to_json %>">
     <div class="col-md-8">
       <% @workouts.each do |workout| %>
         <%= render partial: "shared/list_card",
             locals: {workout: workout} %>
       <% end %>
+
+      <div class="d-flex justify-content-center mt-3">
+        <%= will_paginate @objects, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+      </div>
     </div>
-    <div class="col-md-4 border rounded" style="height: 500px;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">>
+    <div class="col-md-4 border rounded sticky-top p-0" style="height: 500px;">
+      <div class="h-100 w-100" data-map-target="mapContainer"></div>
     </div>
   </div>
 </div>

@@ -45,6 +45,11 @@ Location::LOCATIONS.each do |location|
 end
 puts "Finished generating locations"
 
+puts "Do you want to generate workouts? [Y/N]"
+response = gets.chomp
+
+exit if response.upcase == "N"
+
 workout_seeds = [
   { category_id: Category.find_by(name: "Yoga").id, title: "Sunrise Yoga Bliss", description: "Start your day with a refreshing yoga session by the riverside. Suitable for all levels, this tranquil setting offers a serene backdrop for your morning practice. Breathe in the fresh air and let the gentle sound of flowing water enhance your focus and relaxation. Embrace the peace of nature while you stretch, strengthen, and rejuvenate your body and mind. Whether you're a beginner or a seasoned yogi, the riverside is the perfect place to connect with yourself and the environment.", address: "R. da Cintura do Porto de Lisboa, 1200-109 Lisboa" },
   { category_id: Category.find_by(name: "Running").id, title: "Lisbon City Run", description: "Explore the streets of Lisbon with a scenic 5km city run. Great for beginners and enthusiasts alike, this route takes you through the vibrant and historic heart of the city. Experience the charm of Lisbon as you jog past iconic landmarks, colorful neighborhoods, and along the picturesque waterfront. This run is an excellent way to see the city from a unique perspective while getting your daily exercise. Whether you're a local or a visitor, this 5km journey offers a blend of urban exploration and physical challenge, making it a memorable and invigorating experience.", address: "Av. da Liberdade 110, 1269-047 Lisboa" },

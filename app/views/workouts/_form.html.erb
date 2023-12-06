@@ -3,7 +3,7 @@
 <p class="text-muted">You're on the brink of finding the perfect workout buddies! In your post, be clear and engaging about your fitness journey. Your enthusiasm will draw others who are eager to share in your active lifestyle. Keep it brief, inspiring, and let's start this fitness adventure together!</p>
   <%= simple_form_for(@workout) do |f| %>
     <h5>Describe your workout</h5>
-    <div class="card p-4 mb-5 shadow">
+    <div class="card p-4 mb-5 shadow" style="background-color: #1E293B;">
       <div class="mb-3">
         <%= f.input :title, label: "Title", hint:"Keep it short" %>
       </div>
@@ -49,7 +49,7 @@
       </div>
     </div>
     <h4>When is your workout</h4>
-    <div class="card p-4 mb-5 shadow">
+    <div class="card p-4 mb-5 shadow" style="background-color: #1E293B;">
       <div class="d-flex gap-5 flex-wrap">
         <div class="mb-3 col-3 flex-grow-1">
           <%= f.input :start_date, label: "Date",
@@ -75,7 +75,7 @@
       </div>
     </div>
     <h4>Where is your workout</h4>
-    <div id="search-field" class="card p-4 mb-5 shadow" data-controller="address-autocomplete" data-address-autocomplete-api-key-value="<%=ENV["MAPBOX_API_KEY"]%>">
+    <div id="search-field" style="background-color: #1E293B;" class="card p-4 mb-5 shadow" data-controller="address-autocomplete" data-address-autocomplete-api-key-value="<%=ENV["MAPBOX_API_KEY"]%>">
       <div class="mb-3">
         <div data-address-autocomplete-target="addressField">
           <%= f.input :address,
