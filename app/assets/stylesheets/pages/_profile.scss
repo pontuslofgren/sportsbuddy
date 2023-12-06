@@ -5,17 +5,12 @@
 }
 
 
-#profile-photo {
+.profile-photo {
   position: absolute;
   top: 50px;
   height: 100px;
   width: 100px;
-  border: 2px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.profile-avatar-photo {
-  width: 100%;
 }

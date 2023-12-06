@@ -1,13 +1,13 @@
 <div class="extended-navbar border-bottom">
   <div class="container extended-navbar border-bottom">
-    <div id="profile-photo" class="bg-primary rounded-circle">
+
     <% if @profile.photo.attached? %>
-      <%= cl_image_tag @profile.photo.key, class:"profile-avatar-photo rounded-circle", crop: :fill, width: 100, height:100 %>
+      <%= cl_image_tag @profile.photo.key, class:"profile-photo border rounded-circle", crop: :fill, width: 100, height:100 %>
     <% else %>
-      <i class="fa-solid fa-user fs-1"></i>
+      <i class="fa-solid fa-user fs-1 profile-photo border rounded-circle bg-primary"></i>
     <% end %>
 
-  </div>
+
 
   </div>
 
@@ -41,7 +41,6 @@
       </div>
 
       <div class="mb-3">
-        <h3>Bookings</h3>
         <% if @bookings.any? %>
           <% @bookings.each do |booking| %>
             <%= render partial: "shared/list_card",
@@ -54,14 +53,7 @@
     </div>
 
     <!--  Profile action  -->
-    <div class="col-md-4 border-start">
-
-      <% if @profile == current_user %>
-        This is my profile! Actions for my own profile will go here.
-      <% else %>
-        This is not my profile! Actions for another profile.
-      <% end %>
-
+    <div class="col-md-4">
     </div>
   </div>
 </div>

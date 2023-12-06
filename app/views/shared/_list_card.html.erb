@@ -3,10 +3,21 @@ data-controller="show-info"
 data-action="click->show-info#addShow"
 data-map-target="card"
 style="background-color: #1E293B">
-  <div class="mb-1">
+  <div class="pb-2 d-flex align-items-center">
+  <%= image_tag "icon-categories/#{workout.category.name}.png", class:"avatar-icon me-3" %><span class="text-muted m-0 p-0 fs-sm me-auto"><%= workout.category.name %> (<%= workout.level.name.downcase %>)</span>
+
+  <% if current_user.all_workouts.include? workout %>
+    <span class="badge bg-primary"><i class="fa-solid fa-calendar me-2"></i>Booked</span>
+  <% end %>
+  <%# if workout.user == current_user %>
+    <%# <span class="badge bg-primary"><i class="fa-solid fa-user me-2"></i>Owner</span> %>
+  <%# end %>
+  </div>
+  <div class="pt-2 mb-1">
     <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-clock me-2"></i><%= format_date_time(workout.start_date_time) %></span>
     <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-map-pin me-2"></i><%= workout.address %> (<%= workout.location.name.downcase %>)</span>
-    <span class="text-muted me-4 fs-sm"><%= image_tag "icons/sport.svg", class: "svg-icon me-2"%><%= workout.category.name %> (<%= workout.level.name.downcase %>)</span>
+    <% amount = workout.amount / 100 %>
+    <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-money-bill me-2"></i><%= amount == 0 ? 'Free' : number_with_precision(amount, precision: 2, delimiter: '', separator:',') %></span>
   </div>
   <div>
     <h3 class="fs-5 text-white"><%= workout.title %></h3>
