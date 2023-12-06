@@ -25,7 +25,7 @@
 
 <div class="container mb-3">
 
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-md-8">
 
       <div class="mb-3">
@@ -40,16 +40,6 @@
         <% end %>
       </div>
 
-      <div class="mb-3">
-        <% if @bookings.any? %>
-          <% @bookings.each do |booking| %>
-            <%= render partial: "shared/list_card",
-            locals: {workout: booking.workout} %>
-          <% end %>
-        <% else %>
-          No bookings, yet...
-        <% end %>
-      </div>
     </div>
 
     <!--  Profile action  -->
