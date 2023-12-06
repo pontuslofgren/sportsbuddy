@@ -7,6 +7,7 @@ class WorkoutsController < ApplicationController
     @workouts = @workouts.where(level_id: params[:level_query]) if params[:level_query].present?
     @workouts = @workouts.where(location_id: params[:location_query]) if params[:location_query].present? && !params[:location_query].empty?
     @workouts = @workouts.where("start_date_time > ?", DateTime.parse(params[:datetime])) if params[:datetime].present?
+    @workouts = @workouts.where("amount <= ?", params[:price_query]) if params[:price_query].present?
     @workouts = @workouts.text_search(params[:text]) if params[:text].present? && !params[:text].empty?
     if params[:location].present?
       @workouts = @workouts.near(params[:location].split, 100)
