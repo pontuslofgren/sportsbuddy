@@ -4,7 +4,9 @@ data-action="click->show-info#addShow"
 data-map-target="card"
 style="background-color: #1E293B">
   <div class="pb-2 d-flex align-items-center">
-  <%= image_tag "icon-categories/#{workout.category.name}.png", class:"avatar-icon me-3" %><span class="text-muted m-0 p-0 fs-sm me-auto"><%= workout.category.name %> (<%= workout.level.name.downcase %>)</span>
+  <% category_name = workout.category.name if workout.category.name %>
+  <% level_name = workout.level.name if workout.level.name %>
+  <%= image_tag "icon-categories/#{category_name}.png", class:"avatar-icon me-3" %><span class="text-muted m-0 p-0 fs-sm me-auto"><%= category_name %> (<%= level_name.downcase %>)</span>
 
   <% if current_user.all_workouts.include? workout %>
     <span class="badge bg-primary"><i class="fa-solid fa-calendar me-2"></i>Booked</span>
@@ -14,10 +16,13 @@ style="background-color: #1E293B">
   <%# end %>
   </div>
   <div class="pt-2 mb-1 d-flex">
-    <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-clock me-2"></i><%= format_date_time(workout.start_date_time) %></span>
-    <span class="text-muted me-4 fs-sm me-auto"><i class="fa-solid fa-map-pin me-2"></i><%= workout.address %> (<%= workout.location.name.downcase %>)</span>
-    <% amount = workout.amount / 100 %>
-    <span class="text-muted4 fs-sm"><i class="fa-solid fa-money-bill me-2"></i><%= amount == 0 ? 'Free' : number_with_precision(amount, precision: 2, delimiter: '', separator:',') %></span>
+    <% start_date_time = workout.start_date_time if workout.start_date_time %>
+    <span class="text-muted me-4 fs-sm"><i class="fa-solid fa-clock me-2"></i><%= format_date_time(start_date_time) %></span>
+    <% workout_address = workout.address if workout.address %>
+    <% workout_location = workout.location.name.downcase if workout.location.name.downcase%>
+    <span class="text-muted me-4 fs-sm me-auto"><i class="fa-solid fa-map-pin me-2"></i><%= workout_address %> (<%= workout_location.downcase %>)</span>
+    <% amount = ( workout.amount / 100 ) if workout.amount%>
+    <span class="text-muted fs-sm"><i class="fa-solid fa-money-bill me-2"></i><%= amount == 0 ? 'Free' : number_with_precision(amount, precision: 2, delimiter: '', separator:',') %></span>
   </div>
   <div>
     <h3 class="fs-5 text-white"><%= workout.title %></h3>
