@@ -34,7 +34,7 @@
       <div class="messages flex-grow-1 mt-2" data-chatroom-subscription-target="messages">
         <% @chatroom.messages.each do |message| %>
           <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content sender-row' : 'justify-content-start receiver-row' %>">
-            <%= image_tag message.user.photo, class: 'user-avatar' if message.user.photo.present? %>
+            <%= image_tag message.user.photo, width:150, height:150, class: 'user-avatar' if message.user.photo.present? %>
           <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
             <%= render "messages/message", message: message %>
           </div>
