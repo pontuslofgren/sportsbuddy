@@ -9,14 +9,21 @@
   height: 60vh;
 }
 
+.chatroom-title {
+  height: 10vh;
+  // border: 1px solid yellow;
+}
+
 .messages {
   // border: 1px solid green;
+  overflow-y: scroll;
+  max-height: 50vh;
 }
 
 .chat-sidebar {
   // border: 1px solid blue;
   max-height: 60vh;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .centered-title {
