@@ -3,6 +3,7 @@ class WorkoutsController < ApplicationController
   before_action :set_workout, only: %i[show destroy]
 
   def index
+    @workouts = @workouts.where("start_date_time > ?", DateTime.now())
     @workouts = @workouts.where(category_id: params[:category_query]) if params[:category_query].present?
     @workouts = @workouts.where(level_id: params[:level_query]) if params[:level_query].present?
     @workouts = @workouts.where(location_id: params[:location_query]) if params[:location_query].present? && !params[:location_query].empty?
