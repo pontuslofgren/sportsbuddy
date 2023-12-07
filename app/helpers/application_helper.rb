@@ -20,7 +20,10 @@ module ApplicationHelper
 
   def user_has_booked_workout?(workout)
     if workout.bookings.any?
-      workout.bookings.each { |booking| booking.user == current_user }
+      workout.bookings.each do |booking|
+        return true if booking.user == current_user
+      end
+      return false
     end
   end
 end

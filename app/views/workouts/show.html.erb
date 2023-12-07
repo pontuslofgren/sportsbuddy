@@ -20,11 +20,11 @@
             <%= link_to 'Enter chat', chatroom_path(@workout.chatroom), class:"btn btn-primary text-white" %>
             <% if user_has_booked_workout?(@workout) %>
               <%= link_to 'Cancel booking', booking_path(current_user.bookings.find_by(workout_id: @workout.id)),
-                class:"btn btn-danger",
+                class:"btn btn-outline-danger",
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
             <% elsif user_owns_workout?(@workout) %>
               <%= link_to 'Cancel workout', workout_path(@workout),
-                class:"btn btn-danger",
+                class:"btn btn-outline-danger",
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
             <% end %>
           <% else %>
