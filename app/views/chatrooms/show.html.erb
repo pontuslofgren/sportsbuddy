@@ -5,14 +5,15 @@
       <h3>Your chats</h3>
 
         <div class="mb-3">
-          <% if current_user.all_workouts.any? %>
+          <% all_workouts = current_user.all_workouts %>
+          <% if all_workouts.any? %>
             <div class="list-group">
-              <% current_user.all_workouts.each do |workout| %>
+              <% all_workouts.each do |workout| %>
                 <% chatroom = workout.chatroom %>
                 <%= link_to chatroom_path(chatroom), class:"list-group-item list-group-item-action #{'active' if current_page?(chatroom_path(chatroom))}" do %>
                   <h6><%= workout.title %></h6>
                   <% if chatroom.messages.any? %>
-                    <span class="small">Last message sent <%= time_ago_in_words(chatroom.messages.last.created_at) %> ago</span>
+                    <span class="small"><%= time_ago_in_words(chatroom.messages.last.created_at) %> ago</span>
                   <% else %>
                     <span class="small">No messages, yet</span>
                   <% end %>
