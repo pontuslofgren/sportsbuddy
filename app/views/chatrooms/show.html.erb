@@ -1,7 +1,7 @@
 <div class="container my-5">
 
-  <div class="row gx-5">
-    <div class="col-md-4 chat-sidebar">
+  <div class="row justify-content-between">
+    <div class="col-md-3 chat-sidebar">
       <h3>Your chats</h3>
 
         <div class="mb-3">
@@ -26,16 +26,17 @@
         </div>
     </div>
 
-    <div class="col-md-8 chatroom d-flex flex-column chatroom-container pb-5"
+    <div class="col-md-8 chatroom d-flex flex-column chatroom-container pb-2"
       data-controller="chatroom-subscription"
       data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
       data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
-      <h1 class="centered-title mt-3"><%= link_to @chatroom.workout.title, workout_path(@chatroom.workout) %></h1>
-      <hr>
+      <div class="chatroom-title">
+        <h1 class="centered-title mt-3"><%= link_to @chatroom.workout.title, workout_path(@chatroom.workout) %></h1>
+        <hr>
+      </div>
       <div class="messages flex-grow-1 mt-2" data-chatroom-subscription-target="messages">
         <% @chatroom.messages.each do |message| %>
           <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content sender-row' : 'justify-content-start receiver-row' %>">
-            <%= image_tag message.user.photo, width:150, height:150, class: 'user-avatar' if message.user.photo.present? %>
           <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
             <%= render "messages/message", message: message %>
           </div>
