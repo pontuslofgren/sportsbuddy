@@ -23,7 +23,7 @@
                 class:"btn btn-danger",
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
             <% elsif user_owns_workout?(@workout) %>
-              <%= link_to 'Cancel workout', workout_path,
+              <%= link_to 'Cancel workout', workout_path(@workout),
                 class:"btn btn-danger",
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
             <% end %>
