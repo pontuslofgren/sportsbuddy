@@ -1,54 +1,104 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require 'open-uri'
 
+buddies = [
+  {first_name: 'Alex', last_name: 'McGregor', biography: "Hi there! I'm Alex, a trail runner and mountain biker who loves exploring the great outdoors. My weekends are usually spent on hiking trails or pedaling through rugged terrains. I believe in the power of nature to rejuvenate the soul and body. When I'm not out adventuring, I'm planning my next big trek or bike ride. I love sharing tips about outdoor fitness and am always open to learning new techniques. Join me in embracing the wild side of fitness!"},
+  {first_name: 'Sam', last_name: 'Gnarly', biography: "Namaste! I'm Sam, a yoga practitioner with a deep passion for mind-body wellness. My journey with yoga began five years ago, and it has been a transformative experience. I enjoy exploring various styles of yoga and meditation techniques. I believe in the power of a good stretch and a peaceful mind. I often share my favorite yoga sequences and mindfulness practices. Let's flow together and find our inner peace through yoga!"},
+  {first_name: 'Princess', last_name: 'Madeleine', biography: "Hey! I'm Madeleine, a marathon runner with a love for long-distance challenges. Running is my way of pushing my limits and exploring new horizons. I've completed several marathons and am currently training for an ultra-marathon. Nutrition and recovery play a big role in my routine. I love discussing running strategies and gear. If you're into endurance sports, let's connect and share our running journeys!"},
+  {first_name: 'Riley', last_name: 'Johnsson', biography: "Hello! I'm Riley, relatively new to the fitness world but super excited about this journey. I started my fitness path with home workouts and have recently ventured into the gym. I'm exploring different types of exercises to see what I enjoy most. I'm all about learning and growing, so any tips or advice are always welcome. Let's motivate each other and celebrate our progress, no matter how small!"},
+  {first_name: 'Prince', last_name: 'Carl-Philip', biography: "Hi team! I'm Carl-Philip, and CrossFit is my arena. I thrive on high-intensity workouts and the camaraderie of the CrossFit community. I enjoy the challenge of constantly varied movements and the thrill of competition. I'm a firm believer in the 'no pain, no gain' philosophy. If you're into CrossFit or thinking about trying it, let's connect and push our limits together!"},
+  {first_name: 'Meghan', last_name: 'Markle', biography: "Hey there! I'm Meghan, and dance fitness is my groove. I combine my love for dance and fitness through energetic dance workouts. Whether it's Zumba, hip-hop, or ballet fitness, I'm always moving to the beat. I believe fitness should be fun and invigorating. If you love to dance your way to fitness, let's share our favorite routines and dance together!"},
+  {first_name: 'King', last_name: 'Carl-Gustaf', biography: "What's up, fitness family? I'm Carl-Gustaf the 16th, a bodybuilding enthusiast dedicated to sculpting and strengthening my body. My gym sessions are intense and focused, aiming for optimal muscle growth. Nutrition, rest, and consistency are key in my routine. I love discussing different training techniques and diet plans. If you're into lifting and bodybuilding, let's connect and share our gains!"},
+  {first_name: 'Casey', last_name: 'Neistat', biography: "Hello everyone! I'm Casey, a dedicated athlete following a plant-based lifestyle. My journey as a vegan athlete is about combining fitness with ethical and healthy eating. I enjoy experimenting with nutritious vegan recipes that fuel my workouts. I'm passionate about showing how plant-based diets can support athletic performance. Let's exchange vegan fitness tips and recipes!"},
+  {first_name: 'Princess', last_name: 'Victoria', biography: "Hi, I'm Victoria, a health and wellness coach passionate about helping others achieve their fitness goals. My approach is holistic, focusing on both physical and mental well-being. I specialize in personalized fitness plans and motivational coaching. I believe in setting realistic goals and celebrating every milestone. If you're looking for guidance and support on your fitness journey, I'm here to help!"},
+  {first_name: 'Prince', last_name: 'Harry', biography: "Hey, water lovers! I'm (formerly) prince Harry, and my fitness sanctuary is the pool. I love aquatic exercises, from swimming laps to water aerobics. I find water workouts therapeutic and effective for building strength and endurance. I'm all about sharing aquatic fitness tips and techniques. If you enjoy making a splash in your workouts, let's dive into some aquatic fitness discussions!"},
+  {first_name: 'Prince', last_name: 'William', biography: "What's up? I'm William, and high-intensity interval training (HIIT) is my game. I love the rush and efficiency of HIIT workouts. My routines are short, sweet, and super intense. I'm always on the lookout for new HIIT challenges and love to push my boundaries. If you're into quick and effective workouts, let's share some HIIT love!"},
+  {first_name: 'Robert', last_name: 'Aschberg', biography: "Hello! I'm Robert, a Pilates enthusiast with a focus on core strength and flexibility. My Pilates journey has been transformative, enhancing my posture and body awareness. I enjoy both mat and reformer Pilates, always seeking to perfect my technique. If you're interested in Pilates or looking to start, let's connect and share our experiences and tips!"},
+  {first_name: 'Dwayne', last_name: 'Johnsson', biography: "Hi adventure seekers! I'm The Rock, and I thrive on adrenaline-packed sports. From rock climbing to white-water rafting, I love the thrill and challenge of adventure sports. I believe in living life on the edge and pushing my physical limits. If you're into adventure and extreme sports, let's share our exhilarating experiences!"},
+  {first_name: 'Daniel', last_name: 'Ek', biography: "Hey there! I'm Daniel, and indoor cycling is my passion. I love the energy and intensity of spin classes. My playlists are always upbeat and motivating, driving me through each session. I enjoy tracking my progress and pushing past my previous bests. If you're a fellow spin enthusiast, let's exchange tips and favorite rides!"},
+  {first_name: 'Quinn', last_name: 'McPie', biography: "Hello! I'm Quinn, and functional fitness is my focus. I believe in training my body for real-life movements and activities. My workouts include a mix of strength, mobility, and balance exercises. I love the practicality and variety in functional fitness. If you're into workouts that prepare you for everyday life, let's share our routines and insights!"},
+  {first_name: 'Emerson', last_name: 'Blake', biography: "Hi everyone! I'm Emerson, a fitness and health blogger. I document my fitness journey, sharing insights, challenges, and successes. I explore various workout trends and health tips, always eager to learn and share. I believe in a balanced approach to fitness, combining exercise, nutrition, and mental health. If you're into holistic wellness, let's connect and inspire each other!"},
+  {first_name: 'Finley', last_name: 'Andersen', biography: "What's up, fitness enthusiasts? I'm Finley, a group fitness instructor with a passion for leading and motivating others. I teach a range of classes, from high-energy cardio to strength training. I thrive on the energy of group workouts and the sense of community they foster. If you love group fitness or are curious about it, let's chat and motivate each other!"},
+  {first_name: 'Sawyer', last_name: 'Chainey', biography: "Hey! I'm Sawyer, a dedicated triathlete who loves the challenge of combining swimming, cycling, and running. Triathlon training is tough but incredibly rewarding. I focus on endurance, speed, and efficient transitions. I'm always eager to share training tips and race experiences. If you're a fellow triathlete or aspiring to become one, let's connect and share our triathlon adventures!"},
+  {first_name: 'Parker', last_name: 'Trump', biography: "Hello! I'm Parker, a wellness enthusiast who combines travel and fitness. I seek out new and exciting locations for my workouts, be it yoga on a beach or hiking in the mountains. I believe in the power of new environments to rejuvenate the mind and body. If you love combining travel and fitness, let's share our journeys and destinations!"}
+]
 
+image_urls = [
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962044/woman3_tq5zvy.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962044/woman2_oxwqbi.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962043/prinsessan_dtcqer.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962044/woman_czb4uy.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962043/prinsen_cylpqw.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962043/meghan_jo9rky.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962042/kungen_ulxqvb.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962042/bald11_gmfo6y.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962042/kronprinsessan_tc1raz.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962042/harry_ncdjgz.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962041/bald10_henij0.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962041/bald9_v4eqla.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962040/bald8_jrappj.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962040/bald7_wo2fpe.jpg',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962040/bald6_zhmkme.webp',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962039/bald5_ydwsud.webp',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962039/bald4_h9tjsz.webp',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962039/bald3_hewbje.webp',
+  'https://res.cloudinary.com/dhetcqjra/image/upload/v1701962038/bald2_i09jgd.webp',
+]
 
-puts "Creating a user"
-User.create(first_name: "Pontus",
-            last_name: "Lofgren",
-            email: "fake@example.com",
-            password: "123lewagon",
-            biography: "Passionate about pushing the limits, I'm an avid endurance runner devoted to the exhilaration and challenge of long-distance runs. From marathons to ultra-trail races, I thrive on testing my boundaries and embracing the outdoors. Join me in celebrating the journey of stamina, resilience, and the shared love for every mile. 🏃‍♂️🌲🏞️ #EnduranceSpirit #TrailBlazer",
-            address: "Kråkuddsvägen 2, 18357 Täby"
-            )
-
-puts "Finished creating a user"
-
-puts "Destroying workouts"
-Workout.destroy_all
-
-puts "Generating categories"
-Category.destroy_all
-Category::CATEGORIES.each do |category|
-  Category.create(name: category)
+puts "Do you want to destroy all existing users? [Y/N]"
+if gets.chomp.upcase == "Y"
+  puts "Destroying all users"
+  User.destroy_all
 end
-puts "Finished generating categories"
 
-puts "Generating levels"
-Level.destroy_all
-Level::LEVELS.each do |level|
-  Level.create(name: level)
-end
-puts "Finished generating levels"
+puts "Do you want to generate a bunch of users? [Y/N]"
+if gets.chomp.upcase == "Y"
+  buddies.each_with_index do |buddy, index|
+    puts "Creating user: #{buddy[:first_name]}"
+    user = User.new(
+      email: "fake#{index}@fake.com",
+      password: "123lewagon",
+      address: "Kråkuddsvägen 2, 183 57 Täby, Sweden",
+      **buddy
+    )
+    image_file_type = image_urls[index].split(".").last
+    file = URI.open(image_urls[index])
+    user.photo.attach(io: file, filename: "#{buddy[:first_name]}.#{image_file_type}", content_type: "image/#{image_file_type}")
+    if user.save
+      puts "User saved successfully"
+    end
+  end
 
-puts "Generating locations"
-Location.destroy_all
-Location::LOCATIONS.each do |location|
-  Location.create(name: location)
+  puts "Finished creating users"
 end
-puts "Finished generating locations"
+
+# puts "Destroying workouts"
+# Workout.destroy_all
+
+# puts "Generating categories"
+# Category.destroy_all
+# Category::CATEGORIES.each do |category|
+#   Category.create(name: category)
+# end
+# puts "Finished generating categories"
+
+# puts "Generating levels"
+# Level.destroy_all
+# Level::LEVELS.each do |level|
+#   Level.create(name: level)
+# end
+# puts "Finished generating levels"
+
+# puts "Generating locations"
+# Location.destroy_all
+# Location::LOCATIONS.each do |location|
+#   Location.create(name: location)
+# end
+# puts "Finished generating locations"
 
 puts "Do you want to generate workouts? [Y/N]"
 response = gets.chomp
 
-exit if response.upcase == "N"
+if response.upcase == "Y"
 
 workout_seeds = [
   { category_id: Category.find_by(name: "Yoga").id, title: "Sunrise Yoga Bliss", description: "Start your day with a refreshing yoga session by the riverside. Suitable for all levels, this tranquil setting offers a serene backdrop for your morning practice. Breathe in the fresh air and let the gentle sound of flowing water enhance your focus and relaxation. Embrace the peace of nature while you stretch, strengthen, and rejuvenate your body and mind. Whether you're a beginner or a seasoned yogi, the riverside is the perfect place to connect with yourself and the environment.", address: "Rua Da Cintura Do Porto De Lisboa, 1950-088 Lissabon, Lissabon, Portugal" },
@@ -72,33 +122,44 @@ workout_seeds = [
   { category_id: Category.find_by(name: "Cardio").id, title: "Cardio Blast", description: "Get your heart pumping with this intense cardio workout. This session is a great way to boost your energy and elevate your fitness level. Designed to increase your heart rate and challenge your endurance, this workout combines high-intensity movements with energetic music, creating a motivating and exhilarating exercise environment. Whether you're looking to improve your cardiovascular health, burn calories, or simply inject some vigor into your day, this cardio workout is suitable for a variety of fitness levels. The class structure includes a mix of running, jumping, and dynamic exercises that can be modified to match your individual pace and ability. Prepare to sweat, feel the adrenaline rush, and enjoy the invigorating benefits of this intense cardio session.", address: "Rua do Ouro 274, 1100-065 Lisboa"}
 ]
 
-puts "Generating workouts"
-workout_seeds.each_with_index do |seed_hash, index|
-    workout = Workout.new(
-            user_id: User.all.sample.id,
-            level_id: Level.all.sample.id,
-            spots: (1..15).to_a.sample,
-            category_id: seed_hash[:category_id],
-            start_date: DateTime.now(),
-            start_time: DateTime.now(),
-            duration: DateTime.now(),
-            amount: [0, 500, 1000].sample,
-            start_date_time: DateTime.now() + rand(1..10).days,
-            end_date_time: DateTime.now() + 3.hours,
-            location_id: Location.all.sample.id,
-            title: seed_hash[:title],
-            description: seed_hash[:description],
-            address: seed_hash[:address]
-          )
+  puts "Generating workouts"
+  workout_seeds.each_with_index do |seed_hash, index|
+      workout = Workout.new(
+              user_id: User.all.sample.id,
+              level_id: Level.all.sample.id,
+              spots: (1..15).to_a.sample,
+              category_id: seed_hash[:category_id],
+              start_date: DateTime.now(),
+              start_time: DateTime.now(),
+              duration: DateTime.now(),
+              amount: [0, 500, 1000].sample,
+              start_date_time: DateTime.now() + rand(1..10).days,
+              end_date_time: DateTime.now() + 3.hours,
+              location_id: Location.all.sample.id,
+              title: seed_hash[:title],
+              description: seed_hash[:description],
+              address: seed_hash[:address]
+            )
 
-    if workout.save
-      puts "#{index + 1}: #{workout.title}"
-      chatroom = Chatroom.new(workout_id: workout.id)
-      if chatroom.save
-        puts "> chatroom created"
+      if workout.save
+        puts "#{index + 1}: #{workout.title}"
+        chatroom = Chatroom.new(workout_id: workout.id)
+        if chatroom.save
+          puts "> chatroom created"
+        end
+      else
+        puts "Failure: #{workout.errors.full_messages}"
       end
-    else
-      puts "Failure: #{workout.errors.full_messages}"
-    end
+  end
+  puts "Finished generating workouts"
 end
-puts "Finished generating workouts"
+
+users = User.all
+workouts = Workout.all
+
+users.each do |user|
+  3.times do
+    workout = Workout.all.sample
+    Booking.create(workout_id: workout.id, user_id: user.id, attendees: 1) unless workout.owner_id == user.id
+  end
+end

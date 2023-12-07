@@ -15,7 +15,7 @@ class Workout < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
 
   # Validations
-  validates :address, presence: true
+  validates :address, :amount, :location_id, :category_id, :level_id, :title, :description, :spots, :start_date, :start_time, :duration, presence: true
 
   # Search
   pg_search_scope :text_search,
